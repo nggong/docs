@@ -4,7 +4,7 @@ Docs-as-code repository for ngGONG High Level Software, Controls and Data Manage
 
 This repository is set up as a Quarto project that can produce:
 
-- [A GitHub Pages website](nggong.github.io/docs).
+- [A GitHub Pages website](https://nggong.github.io/docs).
 - A PDF book artifact.
 
 ## Local Preview
