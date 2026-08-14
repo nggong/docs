@@ -7,6 +7,10 @@ book:
   subtitle: "Documentation"
   author: "National Solar Observatory"
   date: today
+  favicon: assets/ngGONG-Logo.png
+  sidebar:
+    logo: assets/NSF-ngGONG-Logo.png
+    logo-alt: "ngGONG logo"
   chapters:
     - index.md
     - docs/overview.md
