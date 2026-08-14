@@ -1,0 +1,32 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "ngGONG Software"
+  subtitle: "Documentation"
+  author: "National Solar Observatory"
+  date: today
+  chapters:
+    - index.md
+    - docs/overview.md
+    - part: docs/design/index.md
+      chapters:
+        - docs/design/hls/cdd.md
+    - docs/software-development-plan.md
+    #- docs/adr/index.md
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-copy: true
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+    colorlinks: true
+
+execute:
+  freeze: auto
