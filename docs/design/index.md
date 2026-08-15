@@ -6,7 +6,7 @@ This section is reserved for ngGONG design documents.
 
 - High Level Software (HLS)
   - Reference Architecture
-  - [Conceptual Design Document](hls/cdd.md)
+  - [Conceptual Design Document](hls/cdd.qmd)
 - Controls
 - Data Management System (DMS)
 

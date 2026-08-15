@@ -16,7 +16,7 @@ book:
     - docs/overview.md
     - part: docs/design/index.md
       chapters:
-        - docs/design/hls/cdd.md
+        - docs/design/hls/cdd.qmd
     - docs/software-development-plan.md
     #- docs/adr/index.md
 

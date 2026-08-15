@@ -1,0 +1,29 @@
+# ngGONG HLS CDD
+
+**Project:** ngGONG HLS (`HLS`)  
+**Document:** High Level Software Conceptual Design Document (`HLSCDD`)  
+**Review Context:** Conceptual Design Review (`CoDR`)  
+**Status:** Draft  
+**Author:** John Hubbard  
+
+## Document Purpose
+TODO 
+
+## Data Flow
+
+```{mermaid}
+flowchart TD
+id_cam@{shape: procs, label: "Cameras"} --> id_summit_proc@{shape: procs, label: "Transfer Adapter"}
+id_summit_proc --> id_summit_nifi[Station NiFi]
+id_summit_nifi --> id_dms_nifi[DMS NiFi]
+id_summit_nifi --> id_ocs_nifi[OCS NiFi]
+id_telem@{shape: procs, label: "Telemetry Sources"} --> id_otel_collect[OTelCollector]
+id_otel_collect --> id_otel_batch[Batch/Zip Plugin]
+id_otel_collect --> id_local_observability_store[Local Observability Store]
+id_otel_batch --> id_summit_nifi
+id_dms_nifi --> id_dms_proc[DMS Data Processing]
+id_dms_proc --> id_swpc[SWPC]
+id_dms_proc --> id_nso_dc[NSO DC]
+id_ocs_nifi --> N[Central Observability Store]
+
+```
