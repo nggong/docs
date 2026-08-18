@@ -13,17 +13,38 @@ TODO
 
 ```{mermaid}
 flowchart TD
-id_cam@{shape: procs, label: "Cameras"} --> id_summit_proc@{shape: procs, label: "Transfer Adapter"}
-id_summit_proc --> id_summit_nifi[Station NiFi]
-id_summit_nifi --> id_dms_nifi[DMS NiFi]
-id_summit_nifi --> id_ocs_nifi[OCS NiFi]
-id_telem@{shape: procs, label: "Telemetry Sources"} --> id_otel_collect[OTelCollector]
-id_otel_collect --> id_otel_batch[Batch/Zip Plugin]
-id_otel_collect --> id_local_observability_store[Local Observability Store]
-id_otel_batch --> id_summit_nifi
-id_dms_nifi --> id_dms_proc[DMS Data Processing]
-id_dms_proc --> id_swpc[SWPC]
-id_dms_proc --> id_nso_dc[NSO DC]
-id_ocs_nifi --> N[Central Observability Store]
+subgraph station[Station]
+  id_cam@{shape: procs, label: "Cameras"} --> id_transfer_adapter@{shape: procs, label: "Transfer Adapters"}
+  id_transfer_adapter -->|FlowFiles| id_station_nifi[Station NiFi]
 
+  id_telem@{shape: procs, label: "Telemetry / Logs / Health Sources"} --> id_otel_collect[OTel Collector]
+  id_otel_collect --> id_otel_batch[ListenOTLP]
+  id_otel_collect --> id_local_observability_store[On-Station Observability Store]
+  id_otel_batch --> id_station_nifi
+end
+
+subgraph hq_dms[HQ    DMS]
+  id_dms_nifi[DMS NiFi]
+  id_dms_proc[...]
+  id_dms_nifi --> id_dms_proc
+end
+
+subgraph hq_ocs[HQ OCS]
+  id_ocs_nifi[OCS NiFi]
+  id_central_observability_store[Central Observability Store]
+  id_ocs_nifi --> id_central_observability_store
+end
+
+subgraph swpc[SWPC]
+  id_swpc[SWPC]
+end
+
+id_station_nifi -->|Science image / data files| id_dms_nifi
+id_station_nifi -->|Telemetry / log / health batches| id_ocs_nifi
+id_dms_proc --> id_swpc
+
+style station fill:#f8f9fa,stroke:#6c757d,color:#212529
+style hq_dms fill:#f8f9fa,stroke:#6c757d,color:#212529
+style hq_ocs fill:#f8f9fa,stroke:#6c757d,color:#212529
+style swpc fill:#f8f9fa,stroke:#6c757d,color:#212529
 ```
