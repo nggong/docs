@@ -9,7 +9,7 @@ book:
   date: today
   favicon: assets/ngGONG-Logo.png
   sidebar:
-    logo: assets/NSF-ngGONG-Logo.png
+    logo: assets/ngGONG-Logo.png
     logo-alt: "ngGONG logo"
   chapters:
     - index.md
