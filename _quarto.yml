@@ -5,7 +5,7 @@ project:
 book:
   title: "ngGONG Software"
   subtitle: "Documentation"
-  author: "National Solar Observatory"
+  author: "The ngGONG Software Team"
   date: today
   favicon: assets/ngGONG-Logo.png
   sidebar:
@@ -19,6 +19,12 @@ book:
         - docs/design/hls/cdd.md
     - docs/software-development-plan.md
     #- docs/adr/index.md
+  page-footer:
+    center: |
+      © Copyright 2026 Association of Universities for Research in Astronomy, Inc. (AURA).
+
+      The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc. (AURA), and funded under a cooperative agreement with the NSF.
+    border: true
 
 format:
   html:
