@@ -8,6 +8,9 @@ book:
   author: "The ngGONG Software Team"
   date: today
   favicon: assets/ngGONG-Logo.png
+  repo-url: https://github.com/nggong/docs
+  repo-branch: main
+  repo-actions: [edit]
   sidebar:
     logo: assets/ngGONG-Logo.png
     logo-alt: "ngGONG logo"
