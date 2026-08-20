@@ -3,6 +3,8 @@
 /.quarto-pdf/
 /_freeze/
 /_site/
+/*_files/
+/**/*_files/
 /.DS_Store
 
 **/*.quarto_ipynb
