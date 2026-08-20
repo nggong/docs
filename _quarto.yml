@@ -10,7 +10,7 @@ book:
   favicon: assets/ngGONG-Logo.png
   repo-url: https://github.com/nggong/docs
   repo-branch: main
-  repo-actions: [edit]
+  repo-actions: [edit, source]
   sidebar:
     logo: assets/ngGONG-Logo.png
     logo-alt: "ngGONG logo"
@@ -27,6 +27,8 @@ book:
       © Copyright 2026 Association of Universities for Research in Astronomy, Inc. (AURA).
 
       The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc. (AURA), and funded under a cooperative agreement with the NSF.
+
+      Except where otherwise noted, this documentation is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
     border: true
 
 format:
