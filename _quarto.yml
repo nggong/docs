@@ -17,10 +17,10 @@ book:
   chapters:
     - index.md
     - docs/overview.md
+    - docs/software-development-plan.qmd
     - part: docs/design/index.md
       chapters:
         - docs/design/hls/cdd.md
-    - docs/software-development-plan.md
     #- docs/adr/index.md
   page-footer:
     center: |
