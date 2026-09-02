@@ -152,9 +152,10 @@ accepted.
 
 Interfaces will be defined in forms that can be reviewed, version controlled,
 and tested.
-Where practical, ngGONG will use repository-controlled schemas, Protocol Buffer
-definitions, interface definition files, data models, or API specifications as
-the authoritative interface definition.
+Where practical, ngGONG will use repository-controlled schemas,
+[Protocol Buffer](https://protobuf.dev/) definitions, interface definition
+files, data models, or API specifications as the authoritative interface
+definition.
 The repository that owns an interface definition should produce the generated
 artifacts needed by both producers and consumers.
 Prose interface control documents may still be used, but they should explain
@@ -241,8 +242,8 @@ ngGONG will define coding standards by repository or technology area as
 implementation languages, frameworks, and runtime environments are selected.
 Where practical, repositories should use established external standards rather
 than project-specific style rules.
-Google style guides may be used as baseline references where they fit the
-selected language or ecosystem.
+[Google style guides](https://google.github.io/styleguide/) may be used as
+baseline references where they fit the selected language or ecosystem.
 
 Coding standards should support readable, maintainable, testable software that
 can be operated and modified over the lifetime of ngGONG.
@@ -491,7 +492,9 @@ and which release each station installed.
 ngGONG software issues will be tracked in a common issue-tracking system where
 practical.
 The project has not yet selected the final software issue-tracking tool.
-Candidate tools include GitHub Issues and Atlassian Jira.
+Candidate tools include
+[GitHub Issues](https://docs.github.com/en/issues/tracking-your-work-with-issues)
+and [Atlassian Jira](https://confluence.atlassian.com/jira).
 The selected approach should support traceability across software work,
 requirements, pull requests, builds, releases, verification evidence, and
 deployment records.
