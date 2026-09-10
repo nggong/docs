@@ -26,6 +26,12 @@ The Makefile builds a small local image from the same Quarto base image used by 
 
 ## Build
 
+Render the website and PDF:
+
+```sh
+make all
+```
+
 Render the website:
 
 ```sh
@@ -39,6 +45,11 @@ make pdf
 ```
 
 The website output is written to `_site/`.
+The PDF output is written to `_pdf/`.
+
+Builds generate document version metadata from Git.
+A clean build from a tag such as `v0.1.0` is marked as `Release v0.1.0`; other builds are marked as drafts
+using `git describe --tags --dirty --always`.
 
 Remove generated documents:
 

@@ -1,0 +1,19 @@
+\usepackage[automark]{scrlayer-scrpage}
+\usepackage{graphicx}
+
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[section]{chapter}
+\ihead{\headmark}
+\ifoot*{ngGONG Software Documentation}
+\providecommand{\DocStatus}{Draft}
+\providecommand{\DocVersion}{unversioned}
+\cfoot*{\DocStatus\ \DocVersion}
+\ofoot*{\pagemark}
+
+\setkomafont{pageheadfoot}{\normalfont\small}
+\setkomafont{pagenumber}{\normalfont\small}
+\setkomafont{title}{\sffamily\bfseries\LARGE}
+\setkomafont{subtitle}{\sffamily\large}
+
+\titlehead{\centering\includegraphics[width=0.55\textwidth]{assets/NSF-ngGONG-Logo.png}}
