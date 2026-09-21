@@ -119,7 +119,7 @@ release records, and verification evidence will reference the requirements they
 satisfy or affect.
 The project has not yet selected the final tooling or traceability schema, but
 the software process will preserve links from requirements through
-implementation and verification.
+implementation and verification using a project-approved traceability schema.
 The level of traceability should match the risk and importance of the software
 being changed.
 
