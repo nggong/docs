@@ -388,7 +388,7 @@ Promotion to an operational environment is a controlled deployment decision; it
 is not the same as passing continuous integration or publishing a build
 artifact.
 
-For additional details about the varous work proeucts see their specific release
+For additional details about the various work products see their specific release
 and deployment management plans:
 
 * Controls
