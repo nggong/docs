@@ -65,6 +65,52 @@ scope of future documents without asking first.
 - Prefer splitting lines at the end of sentences to make file diffs more useful
   but keep in mind a soft 120 character wrap and a hard 140 character wrap.
 
+## Review Rules
+
+### General Scope and Significance
+
+- Review all changed files, including documentation, Makefiles, scripts,
+  workflows, container definitions, configuration, and other files that support
+  document generation or deployment.
+- Report only concrete, consequential problems introduced or materially worsened
+  by the change.
+  Do not report pre-existing problems, minor wording preferences, or formatting
+  issues unless they materially affect meaning or behavior.
+
+### Documentation Changes
+
+- Report a documentation finding when changed text could mislead a reviewer,
+  create an unintended project commitment, conflict with an established project
+  decision, or impede implementation or verification.
+- Flag changed text that presents a proposal, assumption, open question, or TBD
+  as an approved decision, or that invents a requirement, commitment,
+  architectural decision, schedule, responsibility, institutional position, or
+  funding detail.
+  The safe path is to cite an authoritative source or qualify the statement as
+  proposed, assumed, open, or TBD.
+- Flag changed text that materially contradicts an applicable repository
+  document or makes an important requirement or responsibility ambiguous or
+  unverifiable.
+  Identify the conflicting text or the missing actor, condition, expected
+  outcome, or verification basis.
+  Propose the smallest correction that resolves the problem without inventing a
+  project decision.
+
+### Executable and Configuration Changes
+
+- Apply normal software review criteria to Makefiles, scripts, workflows,
+  container definitions, configuration, and other executable or
+  behavior-affecting files.
+- Report correctness, security, reliability, performance, portability, or
+  maintainability defects when they have a credible and consequential effect on
+  document generation, validation, packaging, publication, deployment, or
+  developer workflows.
+- Check that changed commands, dependencies, paths, inputs, outputs, and failure
+  handling are consistent with their callers and intended execution
+  environment.
+- Do not omit an executable-code defect only because its effect is outside the
+  documentation-specific criteria above.
+
 ## Working Style
 
 - Ask questions before starting substantial documentation or repository

@@ -72,6 +72,14 @@ Remove generated documents and the local container-side Quarto cache:
 make distclean
 ```
 
+## Automated Pull Request Review
+
+The AI review workflow uses the official Codex GitHub Action to review pull
+requests according to the rules in `AGENTS.md`.
+To enable it, configure an Actions repository secret named `OPENAI_API_KEY`.
+If the secret is absent or unavailable to the event, the workflow succeeds and
+records that the review was skipped.
+
 ## Repository Layout
 
 - `_quarto.yml` - Quarto project configuration.
