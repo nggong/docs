@@ -17,8 +17,12 @@ book:
   chapters:
     - index.md
     - docs/overview.md
-    - docs/software-development-plan.qmd
-    - part: docs/design/index.md
+    - part: Development Plans
+      chapters:
+      - docs/software-development-plan.qmd
+      #- docs/hls/ocs/release-and-deployment-management.md
+      - docs/hls/scs/release-and-deployment-management.md
+    - part: Design Documents
       chapters:
         - docs/design/hls/cdd.md
     #- docs/adr/index.md
