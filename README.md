@@ -51,6 +51,15 @@ Builds generate document version metadata from Git.
 A clean build from a tag such as `v0.1.0` is marked as `Release v0.1.0`; other builds are marked as drafts
 using `git describe --tags --dirty --always`.
 
+Check spelling with Vale in Docker:
+
+```sh
+make check-spelling
+```
+
+The check uses the Markdown and Quarto files tracked by Git. A local Vale
+installation is not required.
+
 Remove generated documents:
 
 ```sh
@@ -63,6 +72,14 @@ Remove generated documents and the local container-side Quarto cache:
 make distclean
 ```
 
+## Automated Pull Request Review
+
+The AI review workflow uses the official Codex GitHub Action to review pull
+requests according to the rules in `AGENTS.md`.
+To enable it, configure an Actions repository secret named `OPENAI_API_KEY`.
+If the secret is absent or unavailable to the event, the workflow succeeds and
+records that the review was skipped.
+
 ## Repository Layout
 
 - `_quarto.yml` - Quarto project configuration.
@@ -70,7 +87,7 @@ make distclean
 - `Makefile` - Convenience targets for rendering and cleaning outputs.
 - `index.md` - Documentation landing page.
 - `docs/` - Source documentation pages.
-- `.github/workflows/publish.yml` - GitHub Actions workflow for Pages and PDF artifacts.
+- `.github/workflows/` - GitHub Actions workflows for spelling checks, Pages, and PDF artifacts.
 
 ## GitHub Pages Setup
 
