@@ -24,6 +24,11 @@ book:
     - part: docs/design/index.md
       chapters:
         - docs/design/hls/cdd.md
+    - part: docs/developer-guides/index.md
+      chapters:
+        - docs/developer-guides/docker-preview.md
+        - docs/developer-guides/git-commit-signing.md
+        - docs/developer-guides/github-notifications-in-slack.md
     #- docs/adr/index.md
   page-footer:
     center: |

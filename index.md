@@ -15,4 +15,5 @@ This documentation covers:
 
 - [Overview](docs/overview.md)
 - [Software Development Plan](docs/software-development-plan.md)
-- [Design Documents](docs/design/index.md)
+- [Design Documents](docs/design/index.qmd)
+- [Developer Guides](docs/developer-guides/index.md)

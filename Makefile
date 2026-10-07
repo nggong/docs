@@ -1,7 +1,9 @@
 QUARTO_IMAGE ?= ghcr.io/quarto-dev/quarto:1.9.38
 DOCS_IMAGE ?= nggong-docs-quarto:local
+VALE_IMAGE ?= jdkato/vale:v3.17.0
 QUARTO_HOME := .quarto-home
 PDF_OUTPUT_DIR := _pdf
+VALE_FILES := $(shell git ls-files -- '*.md' '*.qmd' ':(exclude)AGENTS.md' ':(exclude)**/AGENTS.md')
 
 DOCKER_RUN = docker run --rm \
 	--user "$$(id -u):$$(id -g)" \
@@ -10,9 +12,20 @@ DOCKER_RUN = docker run --rm \
 	--workdir /project \
 	$(DOCS_IMAGE)
 
-.PHONY: all image html pdf preview clean distclean version
+VALE_RUN = docker run --rm \
+	--user "$$(id -u):$$(id -g)" \
+	--volume "$(CURDIR):/project" \
+	--workdir /project \
+	$(VALE_IMAGE)
+
+.PHONY: all check check-spelling image html pdf preview clean distclean version
 
 all: html pdf
+
+check: check-spelling
+
+check-spelling:
+	$(VALE_RUN) $(VALE_FILES)
 
 image:
 	docker build --build-arg QUARTO_IMAGE=$(QUARTO_IMAGE) --tag $(DOCS_IMAGE) .
