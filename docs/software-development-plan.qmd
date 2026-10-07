@@ -388,6 +388,15 @@ Promotion to an operational environment is a controlled deployment decision; it
 is not the same as passing continuous integration or publishing a build
 artifact.
 
+For additional details about the various work products see their specific release
+and deployment management plans:
+
+* Controls
+  * SIS
+* Data Management System
+* Observatory Control System
+* [Station Control System](hls/scs/scs-release-and-deployment-management).
+
 ### Controls
 
 The release and deployment strategy for Controls is not yet defined.
