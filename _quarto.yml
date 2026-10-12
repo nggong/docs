@@ -20,10 +20,10 @@ book:
   chapters:
     - index.md
     - docs/overview.md
+    - docs/software-development-plan.qmd
     - part: docs/design/index.md
       chapters:
         - docs/design/hls/cdd.md
-    - docs/software-development-plan.md
     - part: docs/developer-guides/index.md
       chapters:
         - docs/developer-guides/docker-preview.md
