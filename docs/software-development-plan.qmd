@@ -406,6 +406,7 @@ pipelines, storage systems, processing environments, data-product compatibility,
 and operational data retention concerns.
 DMS-specific release practices will be defined with the DMS architecture,
 pipeline design, and operations model.
+
 ### HLS - OCS
 
 The release and deployment strategy for the High Level Software (HLS)
