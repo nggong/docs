@@ -20,7 +20,7 @@ Names such as `candidate`, `production`, and station-specific deployment channel
 Source code shall be maintained in Git repositories.
 Build artifacts shall be published to repositories designed for their artifact type rather than committed to Git.
 
-- Reusable libraries (e.g. a Java .jar) shall be published to a artifact repository (e.g. Maven) when another component consumes them as dependencies.
+- Reusable libraries (e.g. a Java .jar) shall be published to an artifact repository (e.g. Maven) when another component consumes them as dependencies.
 - Deployable services shall be published as container images to a container registry.
 - A service does not need a separately published library unless another component consumes that library.
 - System release manifests shall be stored as immutable release artifacts in the SCS deployment repository, such as assets attached to GitHub Releases.
@@ -90,6 +90,10 @@ Pull-request and local-development artifacts may use versions such as:
 These versions are temporary integration aids.
 They shall **not** be referenced by the main branch of a consuming application, included in an SCS release manifest, or deployed to production.
 Application repositories shall have a required merge check that rejects temporary and snapshot dependencies.
+
+The CI pipeline shall verify externally sourced dependencies and build inputs against the project's software supply-chain
+acceptance policy before publishing component artifacts.
+Verification results shall be associated with the published artifacts.
 
 Published artifacts should include, when supported by the build and registry infrastructure:
 
@@ -259,12 +263,15 @@ A documented emergency process shall permit an authorized operator to revoke or 
 
 ## Station Deployment
 
-Each station shall periodically obtain signed or authenticated deployment state from the authoritative source.
+At each scheduled deployment opportunity, the station shall retrieve current channel and revocation state from the
+authoritative source to determine whether a deployment is authorized.
+The deployment state shall be signed or authenticated.
+The station shall not retain a pending deployment request for execution at a later opportunity without repeating that check.
 A station deployment agent shall:
 
 1. retrieve the release approved for the station's applicable channel;
 2. retrieve the current revocation state;
-3. compare the approved release with the locally installed release;
+3. determine whether the release approved for that station differs from the locally installed release;
 4. verify the release manifest, provenance, and referenced image digests;
 5. stage required artifacts without changing the running system, where practical;
 6. deploy during a locally appropriate operational window;
@@ -274,10 +281,26 @@ A station deployment agent shall:
 Stations shall deploy only artifacts named by the approved release manifest.
 They shall not follow component-level `candidate`, `production`, or `latest` tags.
 
+Station deployment shall verify current release authorization and confirm that retrieved artifacts match the identities
+recorded in the approved release manifest.
+Stations are not required to repeat the supply-chain checks performed by CI.
+
+Detailed cybersecurity controls, acceptance criteria, credential management, and any signing or attestation requirements
+remain **TBD** and shall be defined through the project's cybersecurity design process.
+
 A station shall not deploy solely from a stale cached production pointer.
 Before starting a deployment, it shall confirm that the selected release remains approved and is not revoked.
 If current authorization state cannot be obtained, the default behavior shall be to keep the installed release rather than begin a new deployment.
 The project shall define any controlled exception needed for extended network outages.
+
+Revocation prevents subsequent deployment attempts.
+If revocation occurs after a deployment has begun, engineering personnel shall assess affected stations and direct rollback
+or other recovery when appropriate.
+
+A deployment attempt shall have a recorded outcome identifying the target release and the component versions actually running.
+If deployment or post-deployment checks fail, the station shall not resume normal observing until it has reached a qualified configuration
+or an explicitly authorized recovery state.
+Recovery may involve a rollback to the last known good release for the station.
 
 ## Revocation and Rollback
 
