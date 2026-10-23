@@ -25,6 +25,10 @@ book:
     - part: Design Documents
       chapters:
         - docs/design/hls/cdd.md
+    - part: Developer Guide
+      chapters:
+        - docs/developer/developer-workflow-cross-repository-library-changes.md
+        - docs/developer/github-cross-repository-library-workflows.md
     #- docs/adr/index.md
   page-footer:
     center: |

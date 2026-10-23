@@ -2,13 +2,13 @@
 
 ## Purpose and Scope
 
-This section defines how ngGONG Site Control System (SCS) build artifacts are identified, assembled into SCS releases, qualified, promoted, deployed, revoked, rolled back, and retained.
+This section defines how ngGONG Station Control System (SCS) build artifacts are identified, assembled into SCS releases, qualified, promoted, deployed, revoked, rolled back, and retained.
 The process applies to the SCS and can be adapted for other software systems.
 
 The process separates four concepts that must not be conflated:
 
-1. **Build identity** identifies a specific execution of a component’s build pipeline, including the pipeline run.
-2. **Artifact identity** identifies one immutable output produced by a build, such as a container image identified by its registry digest.
+1. **Build identity** identifies the output of one component build.
+2. **Artifact identity** identifies immutable artifact content, such as a container-image digest.
 3. **Release identity** identifies one tested composition of component artifacts and deployment configuration.
 4. **Deployment state** identifies the release currently approved for a channel or station.
 
@@ -25,21 +25,71 @@ Build artifacts shall be published to repositories designed for their artifact t
 - A service does not need a separately published library unless another component consumes that library.
 - System release manifests shall be stored as immutable release artifacts in the SCS deployment repository, such as assets attached to GitHub Releases.
 
-Each successful component build shall receive a unique, immutable build identifier.
+Artifact versioning shall reflect how the artifact is consumed:
+
+- Reusable libraries that are selected independently by downstream builds shall use Semantic Versions.
+- Deployable applications and their container images shall use CI-generated build identifiers rather than Semantic Versions.
+- Interface and schema versions shall be managed independently when consumers need explicit compatibility information.
+- The deployed SCS shall be versioned through its release manifest rather than through a shared application version.
+
+An application build identifier shall be generated entirely by CI.
+Developers shall not edit or increment it in source.
 A format similar to the following is recommended:
 
 ```text
-<base-version>-ci.<date>.<run-number>.g<commit>
+<UTC-date>.<CI-run-id>.<run-attempt>
 ```
 
 For example:
 
 ```text
-1.3.0-ci.20260901.184.g4f92ac1
+20261007.4387291542.1
+```
+
+The date provides human context, the CI run ID provides repository-scoped uniqueness, and the attempt distinguishes reruns that could produce different artifacts.
+The exact field definitions shall be documented for the selected CI system.
+
+The source revision and creation time shall instead be recorded as structured artifact metadata, including the applicable OCI annotations:
+
+```text
+org.opencontainers.image.version
+org.opencontainers.image.created
+org.opencontainers.image.revision
+org.opencontainers.image.source
 ```
 
 Human-readable tags may be used for navigation, but deployment decisions shall use immutable container-image digests.
 A tag such as `candidate` may move when a newer eligible build becomes available; a digest such as `sha256:abc123...` identifies fixed content.
+
+### Reusable Library Versions
+
+Reusable libraries, including JARs generated from shared Protocol Buffer definitions, shall use Semantic Versions.
+The compatibility policy for each library shall define what constitutes a major, minor, or patch change.
+For a shared Protocol Buffer library, the default policy is:
+
+- incompatible wire, generated-API, or defined semantic changes require a major increment;
+- backward-compatible additions to the published interface require a minor increment; and
+- compatible corrections that do not add published interface surface require a patch increment.
+
+Automated schema-compatibility checks shall verify that a breaking change is not published without the required version transition.
+A major version increment labels a compatibility break; it does not replace the migration or coexistence plan needed by deployed consumers.
+
+Official library versions shall be immutable and shall be derived from, or verified against, protected Git release tags.
+Release-tag protection shall restrict creation to authorized identities and prevent modification or deletion after publication.
+Whether release tags must also be cryptographically signed, and which identities may create them, remain **TBD**.
+The source POM may use Maven CI-friendly version placeholders so normal development does not require developers to edit a shared version field.
+Release automation shall resolve the placeholder to the approved Semantic Version when it publishes the library.
+
+Pull-request and local-development artifacts may use versions such as:
+
+```text
+0.0.0-pr.417-SNAPSHOT
+0.0.0-local-SNAPSHOT
+```
+
+These versions are temporary integration aids.
+They shall **not** be referenced by the main branch of a consuming application, included in an SCS release manifest, or deployed to production.
+Application repositories shall have a required merge check that rejects temporary and snapshot dependencies.
 
 Published artifacts should include, when supported by the build and registry infrastructure:
 
@@ -51,6 +101,10 @@ Published artifacts should include, when supported by the build and registry inf
 
 ## Component Candidate Selection
 
+The Developer Guide describes the
+[cross-repository library change workflow](../../developer/developer-workflow-cross-repository-library-changes.md)
+and its [proposed GitHub automation](../../developer/github-cross-repository-library-workflows.md).
+
 Each deployable component shall have its own CI pipeline.
 The pipeline shall, at minimum:
 
@@ -61,6 +115,10 @@ The pipeline shall, at minimum:
 5. build the container image;
 6. publish the image under a unique build identifier; and
 7. resolve and record the published image digest.
+
+The application build identifier shall be injected by CI.
+It shall not be committed to the application source tree.
+The component image shall record the exact released versions of its reusable dependencies in its build metadata or SBOM.
 
 After these checks pass, the component's `candidate` channel may be advanced to the new image digest.
 At the component level, `candidate` means only that the artifact passed its own CI and is eligible for inclusion in a system release candidate.
@@ -121,17 +179,17 @@ deployment_revision: 71bd8af
 components:
   acquisition:
     image: ghcr.io/nggong/scs-acquisition@sha256:aaa...
-    build: 1.4.0-ci.20260901.184.g4f92ac1
+    build: 20260901.4387291542.1
     source_revision: 4f92ac1
 
   sa:
     image: ghcr.io/nggong/scs-sa@sha256:bbb...
-    build: 2.1.0-ci.20260901.91.gab12c34
+    build: 20260901.4387291668.1
     source_revision: ab12c34
 
   transfer:
     image: ghcr.io/nggong/scs-transfer@sha256:ccc...
-    build: 1.8.0-ci.20260901.227.g9981def
+    build: 20260901.4387292017.1
     source_revision: 9981def
 
 configuration:
@@ -235,11 +293,10 @@ If a production release is found to be defective after one or more stations depl
 2. move the production channel to the last known-good release;
 3. publish the updated channel and revocation state immediately;
 4. identify stations that downloaded, staged, or installed the revoked release;
-5. cancel pending deployments of the revoked release;
-6. direct affected stations to roll back when rollback is safe;
-7. preserve the revoked release manifest, images, evidence, and deployment history;
-8. correct the affected component through its normal build pipeline; and
-9. compose and fully qualify a new SCS release.
+5. direct affected stations to roll back when rollback is safe;
+6. preserve the revoked release manifest, images, evidence, and deployment history;
+7. correct the affected component through its normal build pipeline; and
+8. compose and fully qualify a new SCS release.
 
 The revoked release shall not be deleted or modified.
 Its release notes or external status metadata may identify it as revoked, but its tag, manifest, and attached artifacts shall remain unchanged.
@@ -276,6 +333,10 @@ The retention process shall protect:
 Unreferenced component candidates that never entered a release manifest may be deleted after a defined grace period.
 Temporary build products and CI logs may use shorter retention periods if they are not required to reproduce or audit a release.
 Registry garbage collection shall run only after the reachability calculation and grace period are complete.
+
+Temporary Maven artifacts published for pull-request integration shall use a distinct version pattern and retention policy.
+They may be removed after their source pull requests are closed and no open consumer pull request references them.
+Published Semantic Version releases shall not be overwritten or removed merely because they are no longer selected by current applications.
 
 Deleting a mutable tag does not necessarily delete image content, and deleting image content can break an old release even when its manifest remains.
 The pruning process shall therefore work from immutable digests and shall verify that no protected manifest or deployed station references an artifact before deletion.
