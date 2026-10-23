@@ -14,9 +14,9 @@ This documentation covers:
 ## Documentation Sets
 
 - [Overview](docs/overview.md)
-- [Software Development Plan](docs/software-development-plan.md)
+- [Software Development Plan](docs/software-development-plan.qmd)
 - Developer Guide
   - [Cross-Repository Library Changes](docs/developer/developer-workflow-cross-repository-library-changes.md)
   - [GitHub Automation](docs/developer/github-cross-repository-library-workflows.md)
-- [Design Documents](docs/design/index.qmd)
+<!--- [Design Documents](docs/design/index.qmd) -->
 - [Developer Guides](docs/developer-guides/index.md)

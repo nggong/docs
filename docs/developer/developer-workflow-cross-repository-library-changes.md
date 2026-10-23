@@ -179,7 +179,7 @@ Also explain in normal prose:
 - which tests exercise the combined behavior; and
 - that the temporary dependency will be replaced automatically after the library release.
 
-After the application PR receives its number, add a backlink to the library PR:
+After the application PR receives its number, add a back-link to the library PR:
 
 ```text
 Downstream-PR: nggong/scs-acquisition#892
