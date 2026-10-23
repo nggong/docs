@@ -2,6 +2,7 @@ APIs
 Atlassian
 auditability
 auditable
+Buf
 CoDR
 coadding
 Cybersecurity
@@ -15,9 +16,12 @@ Makefile
 Mitigations
 mitigations
 ngGONG
+PR's
 protobuf
 Quarto
 reachability
+ruleset
+rulesets
 runbooks
 runtimes
 SBOMs
@@ -25,3 +29,4 @@ TinyTeX
 triaged
 Unreferenced
 untrusted
+updater's
