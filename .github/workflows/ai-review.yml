@@ -1,0 +1,116 @@
+name: AI Review
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    name: Codex
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      final_message: ${{ steps.run_codex.outputs.final-message }}
+    steps:
+      - name: Check API key configuration
+        id: api_key
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -n "${OPENAI_API_KEY}" ]; then
+            echo "configured=true" >> "${GITHUB_OUTPUT}"
+          else
+            echo "configured=false" >> "${GITHUB_OUTPUT}"
+            {
+              echo "### AI review skipped"
+              echo
+              echo "The repository secret \`OPENAI_API_KEY\` is not configured or is unavailable to this event."
+            } >> "${GITHUB_STEP_SUMMARY}"
+          fi
+
+      - name: Check out pull request
+        if: steps.api_key.outputs.configured == 'true'
+        uses: actions/checkout@v6
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Restore trusted review instructions
+        if: steps.api_key.outputs.configured == 'true'
+        run: |
+          git show HEAD^1:AGENTS.md > AGENTS.md
+          git show HEAD^1:.github/codex/prompts/review.md > .github/codex/prompts/review.md
+
+      - name: Run Codex review
+        if: steps.api_key.outputs.configured == 'true'
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/codex/prompts/review.md
+          effort: medium
+          sandbox: read-only
+          safety-strategy: drop-sudo
+          codex-args: '["--ephemeral"]'
+
+  post_feedback:
+    name: Post review
+    needs: review
+    if: needs.review.outputs.final_message != '' && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Create or update pull request comment
+        uses: actions/github-script@v9
+        env:
+          CODEX_FINAL_MESSAGE: ${{ needs.review.outputs.final_message }}
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const marker = '<!-- codex-ai-review -->';
+            const output = process.env.CODEX_FINAL_MESSAGE || '';
+            const body = [
+              marker,
+              '## Codex AI review',
+              '',
+              '> Automated review. Verify each finding before acting on it.',
+              '',
+              output.slice(0, 60000),
+            ].join('\n');
+            const parameters = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+            };
+            const comments = await github.paginate(
+              github.rest.issues.listComments,
+              { ...parameters, per_page: 100 },
+            );
+            const prior = comments.find(
+              (comment) => comment.user?.login === 'github-actions[bot]' &&
+                comment.body?.includes(marker),
+            );
+
+            if (prior) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: prior.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({ ...parameters, body });
+            }

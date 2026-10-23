@@ -119,7 +119,7 @@ release records, and verification evidence will reference the requirements they
 satisfy or affect.
 The project has not yet selected the final tooling or traceability schema, but
 the software process will preserve links from requirements through
-implementation and verification.
+implementation and verification using a project-approved traceability schema.
 The level of traceability should match the risk and importance of the software
 being changed.
 
@@ -415,6 +415,7 @@ pipelines, storage systems, processing environments, data-product compatibility,
 and operational data retention concerns.
 DMS-specific release practices will be defined with the DMS architecture,
 pipeline design, and operations model.
+
 ### HLS - OCS
 
 The release and deployment strategy for the High Level Software (HLS)
