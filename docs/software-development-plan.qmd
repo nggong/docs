@@ -1,4 +1,11 @@
-# Software Development Plan
+---
+title: "Software Development Plan"
+format:
+  html:
+    other-links:
+      - text: Download PDF
+        href: ../_pdf/docs/software-development-plan.pdf
+---
 
 ## Purpose and Scope
 
@@ -387,6 +394,22 @@ records.
 Promotion to an operational environment is a controlled deployment decision; it
 is not the same as passing continuous integration or publishing a build
 artifact.
+
+For additional details about the various work products see their specific release
+and deployment management plans:
+
+* Controls
+  * SIS
+* Data Management System
+* Observatory Control System
+
+::: {.content-visible when-format="html"}
+* [Station Control System](hls/scs/release-and-deployment-management.md).
+:::
+
+::: {.content-visible when-format="pdf"}
+* [Station Control System]({{< meta published-site-url >}}/docs/hls/scs/release-and-deployment-management.html).
+:::
 
 ### Controls
 

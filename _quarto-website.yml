@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.md
+    - "docs/**/*.md"
+    - "docs/**/*.qmd"
+  resources:
+    - _pdf/
+
+website:
+  title: "ngGONG Software Documentation"
+  favicon: assets/ngGONG-Logo.png
+  repo-url: https://github.com/nggong/docs
+  repo-branch: main
+  repo-actions: [edit, source]
+  sidebar:
+    logo: assets/ngGONG-Logo.png
+    logo-alt: "ngGONG logo"
+    style: docked
+    collapse-level: 2
+    contents:
+      - index.md
+      - section: Software Development Plan
+        href: docs/software-development-plan.qmd
+        contents:
+          - section: Release and Deployment
+            contents:
+              - docs/hls/scs/release-and-deployment-management.md
+      - section: docs/developer-guides/index.md
+        contents:
+          - section: How-Tos
+            contents:
+              - docs/developer-guides/docker-preview.md
+              - docs/developer-guides/git-commit-signing.md
+              - docs/developer-guides/github-notifications-in-slack.md
+          - section: Cross-Repository Workflow
+            contents:
+              - docs/developer/developer-workflow-cross-repository-library-changes.md
+              - docs/developer/github-cross-repository-library-workflows.md
+  page-footer:
+    center: |
+      {{< meta doc-status >}} {{< meta doc-version >}}
+
+      © Copyright 2026 Association of Universities for Research in Astronomy, Inc. (AURA).
+
+      The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc. (AURA), and funded under a cooperative agreement with the NSF.
+
+      Except where otherwise noted, this documentation is licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+    border: true
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: false
+    code-copy: true

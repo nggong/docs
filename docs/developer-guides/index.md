@@ -9,6 +9,11 @@ They describe recommended practices unless a guide identifies a project requirem
 - [Set Up Git Commit Signing](git-commit-signing.md)
 - [Get GitHub Notifications in Slack](github-notifications-in-slack.md)
 
+### Cross-Repository Changes
+
+- [Developer Workflow for Cross-Repository Library Changes](../developer/developer-workflow-cross-repository-library-changes.md)
+- [GitHub Automation for Cross-Repository Library Changes](../developer/github-cross-repository-library-workflows.md)
+
 ## Improve These Guides
 
 If a guide does not work in your environment, investigate the problem and correct the guide.
