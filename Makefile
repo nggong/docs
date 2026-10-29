@@ -20,7 +20,7 @@ VALE_RUN = docker run --rm \
 
 .PHONY: all check check-spelling image html pdf preview clean distclean version
 
-all: html pdf
+all: html
 
 check: check-spelling
 
@@ -30,11 +30,11 @@ check-spelling:
 image:
 	docker build --build-arg QUARTO_IMAGE=$(QUARTO_IMAGE) --tag $(DOCS_IMAGE) .
 
-html: image version
+html: pdf
 	$(DOCKER_RUN) quarto render --to html
 
 pdf: $(QUARTO_HOME)/.tinytex-ready version
-	$(DOCKER_RUN) quarto render --to pdf --output-dir $(PDF_OUTPUT_DIR)
+	$(DOCKER_RUN) quarto render --profile pdf --to pdf --output-dir $(PDF_OUTPUT_DIR)
 
 version:
 	./tools/doc-version.sh
@@ -51,7 +51,8 @@ preview: image version
 		--publish 4848:4848 \
 		--volume "$(CURDIR):/project" \
 		--workdir /project \
-		$(DOCS_IMAGE) quarto preview --host 0.0.0.0 --port 4848
+		$(DOCS_IMAGE) quarto preview --host 0.0.0.0 --port 4848 \
+		--metadata doc-status: --metadata doc-version:PREVIEW
 
 clean:
 	rm -rf _site $(PDF_OUTPUT_DIR) .quarto-pdf .quarto _freeze

@@ -10,12 +10,14 @@ cybersecurity
 DRDs
 Docker's
 GONG
+github
 ICDs
 Jira
 Makefile
 Mitigations
 mitigations
 ngGONG
+PDFs
 PR's
 protobuf
 Quarto
@@ -25,6 +27,7 @@ rulesets
 runbooks
 runtimes
 SBOMs
+shortcode
 TinyTeX
 triaged
 Unreferenced

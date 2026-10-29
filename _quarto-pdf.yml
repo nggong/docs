@@ -1,0 +1,28 @@
+# Only formal documents belong in this render list.
+# A listed document may assemble multiple source files with Quarto includes.
+project:
+  type: default
+  output-dir: _pdf
+  render:
+    - docs/software-development-plan.qmd
+
+author: "ngGONG Software Team"
+subtitle: "Next-Generation Ground-based Solar Observing Network"
+date: today
+# Used only for links from downloadable PDFs to website-only pages.
+published-site-url: https://nggong.github.io/docs
+
+format:
+  pdf:
+    documentclass: scrreprt
+    latex-input-paths:
+      - .
+    toc: true
+    number-sections: true
+    colorlinks: true
+    papersize: letter
+    geometry:
+      - margin=1in
+    include-in-header:
+      - .quarto/generated/pdf-version.tex
+      - tex/pdf-style.tex

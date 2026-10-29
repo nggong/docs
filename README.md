@@ -5,7 +5,7 @@ Docs-as-code repository for ngGONG High Level Software, Controls and Data Manage
 This repository is set up as a Quarto project that can produce:
 
 - [A GitHub Pages website](https://nggong.github.io/docs).
-- A PDF book artifact.
+- A separate PDF for the Software Development Plan.
 
 ## Local Preview
 
@@ -16,6 +16,7 @@ make preview
 ```
 
 Then open http://localhost:4848/.
+The preview footer displays `PREVIEW` instead of a Git-derived version.
 
 ## Local Dependencies
 
@@ -38,14 +39,33 @@ Render the website:
 make html
 ```
 
-Render the PDF:
+Render the formal-document PDFs:
 
 ```sh
 make pdf
 ```
 
 The website output is written to `_site/`.
-The PDF output is written to `_pdf/`.
+PDFs are written under `_pdf/`, preserving their source paths:
+
+- `_pdf/docs/software-development-plan.pdf`
+
+`make html` builds the PDFs first so that the website's PDF download links work.
+`make preview` does not build PDFs; its download links require a prior PDF build and may point to older files.
+The website includes these files under `_site/_pdf/`.
+Developer guides and SCS release guidance are published as web pages only.
+
+The website navigation is defined in `_quarto-website.yml`, with unnumbered, nested content groups.
+Its render rules publish documents under `docs/` while excluding the existing unlisted HLS design draft.
+New documents under `docs/` will be published by default; add them to the navigation or explicitly exclude them while they are drafts.
+The SDP remains one online page for now.
+
+The `pdf` profile in `_quarto-pdf.yml` selects the formal documents and their shared PDF settings.
+To add a formal document later, add its entry document to that profile's render list and give its website page a PDF link.
+A document can assemble multiple Markdown sources with Quarto's `include` shortcode;
+keep included fragments out of the website render list unless they are intended as standalone pages.
+PDF selection is independent of the website sidebar.
+Section numbers belong to each PDF rather than the whole website.
 
 Builds generate document version metadata from Git.
 A clean build from a tag such as `v0.1.0` is marked as `Release v0.1.0`; other builds are marked as drafts
@@ -82,7 +102,9 @@ records that the review was skipped.
 
 ## Repository Layout
 
-- `_quarto.yml` - Quarto project configuration.
+- `_quarto.yml` - Shared metadata and default website profile.
+- `_quarto-website.yml` - Website configuration and navigation.
+- `_quarto-pdf.yml` - Formal-document PDF selection and formatting.
 - `Dockerfile` - Local/CI Quarto build image.
 - `Makefile` - Convenience targets for rendering and cleaning outputs.
 - `index.md` - Documentation landing page.

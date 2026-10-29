@@ -1,4 +1,11 @@
-# Software Development Plan
+---
+title: "Software Development Plan"
+format:
+  html:
+    other-links:
+      - text: Download PDF
+        href: ../_pdf/docs/software-development-plan.pdf
+---
 
 ## Purpose and Scope
 
@@ -395,7 +402,14 @@ and deployment management plans:
   * SIS
 * Data Management System
 * Observatory Control System
-* [Station Control System](hls/scs/scs-release-and-deployment-management).
+
+::: {.content-visible when-format="html"}
+* [Station Control System](hls/scs/release-and-deployment-management.md).
+:::
+
+::: {.content-visible when-format="pdf"}
+* [Station Control System]({{< meta published-site-url >}}/docs/hls/scs/release-and-deployment-management.html).
+:::
 
 ### Controls
 

@@ -35,8 +35,8 @@ jobs:
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v5
         with:
-          name: nggong-hls-documentation-pdf
-          path: _pdf/*.pdf
+          name: nggong-documentation-pdfs
+          path: _pdf/**/*.pdf
           if-no-files-found: error
 
       - name: Upload GitHub Pages artifact

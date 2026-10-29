@@ -1,22 +1,20 @@
-# ngGONG
+# Overview
 
 [The Next-Generation Ground-based Solar Observatory Network](https://nso.edu/telescopes/nggong)
 is a geographically distributed network of six solar observing stations designed to provide continuous observations of the Sun.
 Each station operates largely autonomously, while High Level Software, Controls, and Data Management work together to
 operate the telescopes, monitor the network, acquire observations, and deliver data for fundamental science and space weather.
 
-This documentation covers:
-
-  - The High Level Software (HLS),
-  - Controls,
-  - The Data Management System (DMS).
+This website (and backing github repository) contains the ngGONG software documentation.
+The primary audience for this documentation is developers of ngGONG software but it may be relevant
+to others, especially reviewers.
 
 ## Documentation Sets
 
-- [Overview](docs/overview.md)
-- [Software Development Plan](docs/software-development-plan.qmd)
-- Developer Guide
-  - [Cross-Repository Library Changes](docs/developer/developer-workflow-cross-repository-library-changes.md)
-  - [GitHub Automation](docs/developer/github-cross-repository-library-workflows.md)
-<!--- [Design Documents](docs/design/index.qmd) -->
-- [Developer Guides](docs/developer-guides/index.md)
+- [Software Development Plan](docs/software-development-plan.qmd) - The guiding document for how
+  ngGONG will do software development.
+  - [SCS Release and Deployment Management](docs/hls/scs/release-and-deployment-management.md) - A
+  detailed look at how the Station Control System specifically will do release and deployment management.
+- Design Documents
+  - [High Level Software Conceptual Design Document](docs/design/hls/cdd.md)
+- [Developer Guides](docs/developer-guides/index.md) - Guides and how-tos for developers
