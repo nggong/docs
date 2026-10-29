@@ -130,3 +130,9 @@ whether a PDF artifact should be generated in addition to the html/webpage.
   explain what changed.
 - Do not create directories, templates, or new documents unless explicitly asked
   or the need has been confirmed.
+
+## Autonomy
+
+- The make targets `all` and `check` may be run without prompting the user.
+- Before running make preview check to see if there is a preview already running;
+  if there is not run `make preview` without prompting the user.
