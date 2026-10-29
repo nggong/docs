@@ -56,7 +56,7 @@ The website includes these files under `_site/_pdf/`.
 Developer guides and SCS release guidance are published as web pages only.
 
 The website navigation is defined in `_quarto-website.yml`, with unnumbered, nested content groups.
-Its render rules publish documents under `docs/` while excluding the existing unlisted HLS design draft.
+Its render rules publish documents under `docs/`.
 New documents under `docs/` will be published by default; add them to the navigation or explicitly exclude them while they are drafts.
 The SDP remains one online page for now.
 

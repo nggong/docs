@@ -5,7 +5,6 @@ project:
     - index.md
     - "docs/**/*.md"
     - "docs/**/*.qmd"
-    - "!docs/design/hls/new_cdd.md"
   resources:
     - _pdf/
 
@@ -28,9 +27,6 @@ website:
           - section: Release and Deployment
             contents:
               - docs/hls/scs/release-and-deployment-management.md
-      - section: Design Documents
-        contents:
-          - docs/design/hls/cdd.md
       - section: docs/developer-guides/index.md
         contents:
           - section: How-Tos
