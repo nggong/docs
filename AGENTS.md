@@ -37,13 +37,20 @@ keep technical work direct, factual, and useful.
 ## Repository Purpose
 
 This repository is a shared working space for ngGONG High Level Software, 
-Controls and Data Management System design and construction work. It will mostly
-contain Markdown files that become project documentation as work proceeds toward
-the Conceptual Design Review.
+Controls and Data Management System design and construction work.
+It contains Markdown files that form the project documentation for the design
+and eventually construction phase of the project.  
 
-For now, focus on the `Software Development Plan` (`SDP`). Additional documents
-may be added later, but do not create new document structures or assume the
-scope of future documents without asking first.
+For now, focus on the `Software Development Plan` (`SDP`) and the 'Conceptual Design' ('CDD').
+In addition to the major review deliverables the repo also contains how to documents describing
+developer workflow.
+
+The GitHub CI pipeline that is run on this repo will produce a github page with most (all?) of
+the documentation.
+In addition PDFs are produced for certain deliverables that need to be more easily shared with
+reviewers or others in the project.  
+When a user requests a new document (other than just another how-to/developer guide) ask the
+whether a PDF artifact should be generated in addition to the html/webpage.  
 
 ## Documentation Guidance
 
