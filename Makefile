@@ -3,6 +3,13 @@ DOCS_IMAGE ?= nggong-docs-quarto:local
 VALE_IMAGE ?= jdkato/vale:v3.17.0
 QUARTO_HOME := .quarto-home
 PDF_OUTPUT_DIR := _pdf
+# Preview settings must apply to both renders; --profile replaces QUARTO_PROFILE.
+HTML_PROFILE := website
+PDF_PROFILE := pdf
+ifneq ($(DOCS_PREVIEW),)
+HTML_PROFILE := pr-preview,website
+PDF_PROFILE := pr-preview,pdf
+endif
 VALE_FILES := $(shell git ls-files -- '*.md' '*.qmd' ':(exclude)AGENTS.md' ':(exclude)**/AGENTS.md')
 
 DOCKER_RUN = docker run --rm \
@@ -31,10 +38,10 @@ image:
 	docker build --build-arg QUARTO_IMAGE=$(QUARTO_IMAGE) --tag $(DOCS_IMAGE) .
 
 html: pdf
-	$(DOCKER_RUN) quarto render --to html
+	$(DOCKER_RUN) quarto render --profile $(HTML_PROFILE) --to html
 
 pdf: $(QUARTO_HOME)/.tinytex-ready version
-	$(DOCKER_RUN) quarto render --profile pdf --to pdf --output-dir $(PDF_OUTPUT_DIR)
+	$(DOCKER_RUN) quarto render --profile $(PDF_PROFILE) --to pdf --output-dir $(PDF_OUTPUT_DIR)
 
 version:
 	./tools/doc-version.sh

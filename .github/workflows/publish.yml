@@ -1,20 +1,20 @@
-name: Publish Documentation
+name: Build Documentation
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - "v*"
+    branches: [main]
+    tags: ["v*"]
   pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: docs-build-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -23,14 +23,22 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
         with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          persist-credentials: false
 
-      - name: Configure GitHub Pages
-        if: github.event_name != 'pull_request'
-        uses: actions/configure-pages@v6
+      - name: Configure PR preview
+        if: github.event_name == 'pull_request'
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: python3 tools/preview-config.py
 
       - name: Render documentation
         run: make all
+        env:
+          DOCS_PREVIEW: ${{ github.event_name == 'pull_request' && '1' || '' }}
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v5
@@ -39,23 +47,9 @@ jobs:
           path: _pdf/**/*.pdf
           if-no-files-found: error
 
-      - name: Upload GitHub Pages artifact
-        if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v5
+      - name: Upload complete website
+        uses: actions/upload-artifact@v5
         with:
-          path: _site
-
-  deploy:
-    if: github.event_name != 'pull_request'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+          name: documentation-site
+          path: _site/
+          if-no-files-found: error

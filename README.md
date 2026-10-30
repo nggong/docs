@@ -100,6 +100,66 @@ To enable it, configure an Actions repository secret named `OPENAI_API_KEY`.
 If the secret is absent or unavailable to the event, the workflow succeeds and
 records that the review was skipped.
 
+## Pull Request Previews
+
+Pull requests targeting `main`, including drafts, build HTML and all configured PDFs.
+For branches in this repository, successful builds are published at:
+
+```text
+https://nggong.github.io/docs/pr/<PR-number>/
+```
+
+The existing PDF download links point to that preview's PDFs.
+The preview banner shows the PR number and source commit.
+Builds render the PR head commit rather than GitHub's temporary merge commit.
+Fork PRs build downloadable artifacts but are not published automatically.
+All published previews are public.
+
+`Build Documentation` uploads the complete website and a separate PDF artifact.
+`Publish Documentation` runs trusted code from `main`, updates generated output on the `gh-pages` storage branch,
+and deploys the combined production site and previews using GitHub Actions.
+Keep the Pages source set to **GitHub Actions**; do not select the storage branch as the publishing source.
+Production updates preserve previews, and PR updates replace only that PR's directory.
+Closing or merging a PR removes its preview; each publisher run also removes previews for other closed PRs.
+Reopening a PR starts a new build and restores the preview.
+Publish updates queue rather than cancel one another.
+Old builds are skipped when their source commit no longer matches the PR or production ref.
+The publisher records build run IDs to prevent older builds from replacing newer output.
+Tag builds (`v*`) retain the existing behavior of updating the production site.
+The most recent accepted production build run takes precedence across main and tag builds.
+
+The publisher's Actions job summary links to the published content after assembly;
+confirm that its deployment step succeeded before using the link.
+A failed build leaves the last successful preview in place; compare its banner commit with the PR head.
+A failed deployment can be retried by rerunning the publisher workflow.
+To publish a specific successful build, manually run **Publish Documentation** from `main`
+and supply its **Build Documentation run ID** (the number in the build's Actions URL).
+Leave the input blank to reconcile cleanup and redeploy stored content.
+Build artifacts must still be available for a retry that supplies a run ID.
+
+### Initial Setup
+
+GitHub requires the `workflow_run` publisher to exist on the default branch before it can run.
+The first PR introducing these workflows can verify builds and downloadable artifacts;
+its hosted preview cannot run automatically until the publisher is merged into `main`.
+After that merge, the main build seeds the production output and subsequent PRs can publish previews.
+An already open PR can publish by pushing another commit or manually publishing its successful build run ID.
+If a preview is stored before the first production build, deployment waits for a production home page.
+
+The publishing job needs `contents: write`, `actions: read`, `pull-requests: read`,
+`pages: write`, and `id-token: write` permissions.
+Repository or organization policy must permit these permissions and creation of the `gh-pages` branch.
+The existing `github-pages` environment must allow publishing workflows on `main`.
+Any environment approval rules still apply.
+Do not edit generated files on `gh-pages` by hand.
+Previews share the GitHub Pages site size limit with production, so closed previews are removed rather than archived.
+
+Run local publishing tests without GitHub access:
+
+```sh
+python3 tools/test_publish_site.py
+```
+
 ## Repository Layout
 
 - `_quarto.yml` - Shared metadata and default website profile.
@@ -109,7 +169,7 @@ records that the review was skipped.
 - `Makefile` - Convenience targets for rendering and cleaning outputs.
 - `index.md` - Documentation landing page.
 - `docs/` - Source documentation pages.
-- `.github/workflows/` - GitHub Actions workflows for spelling checks, Pages, and PDF artifacts.
+- `.github/workflows/` - GitHub Actions workflows for spelling checks, builds, and Pages publishing.
 
 ## GitHub Pages Setup
 
