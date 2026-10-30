@@ -1,3 +1,8 @@
+# Ignore worktree subdirs for both website and PDF generation
+project:
+  render:
+    - "!worktrees/**"
+
 # Keep output-specific render lists in separate profiles: Quarto merges lists.
 profile:
   default: website

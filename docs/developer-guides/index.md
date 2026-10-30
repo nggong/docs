@@ -5,6 +5,7 @@ They describe recommended practices unless a guide identifies a project requirem
 
 ## Guides
 
+- [Install and Use Atlassian CLI](acli.md)
 - [Install Docker for Documentation Preview](docker-preview.md)
 - [Set Up Git Commit Signing](git-commit-signing.md)
 - [Get GitHub Notifications in Slack](github-notifications-in-slack.md)
