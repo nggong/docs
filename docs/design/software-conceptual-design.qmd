@@ -1,0 +1,68 @@
+---
+title: "Software Conceptual Design"
+format:
+  html:
+    number-sections: true
+    other-links:
+      - text: Download PDF
+        href: ../../_pdf/docs/design/software-conceptual-design.pdf
+---
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\part{Design}
+```
+:::
+::: {.content-visible unless-format="pdf"}
+## Design {.unnumbered}
+:::
+
+
+{{< include _conceptual/scope-and-document-relationships.md >}}
+
+{{< include _conceptual/architectural-drivers-and-constraints.md >}}
+
+{{< include _conceptual/architectural-overview.md >}}
+
+{{< include _conceptual/major-hls-software-components.md >}}
+
+{{< include _conceptual/major-dms-software-components-and-data-lifecycle.md >}}
+
+{{< include _conceptual/selected-sequence-diagrams-and-conceptual-behavior.md >}}
+
+{{< include _conceptual/deployment-and-communications-concepts.md >}}
+
+{{< include _conceptual/major-internal-and-external-interfaces.md >}}
+
+{{< include _conceptual/information-assurance-and-resilience-concepts.md >}}
+
+{{< include _conceptual/major-design-decisions-and-feasibility-evidence.md >}}
+
+{{< include _conceptual/technical-risks-and-planned-mitigations.md >}}
+
+{{< include _conceptual/development-approach-and-path-to-pdr.md >}}
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\part{Requirements Allocation}
+```
+:::
+::: {.content-visible unless-format="pdf"}
+## Requirements Allocation {.unnumbered}
+:::
+
+## OCS Requirements Allocation
+## SCS Requirements Allocation
+## DMS Requirements Allocation
+## SIS Requirements Allocation
+
+::: {.content-visible when-format="pdf"}
+```{=latex}
+\part{Architecture Design Summary}
+```
+:::
+::: {.content-visible unless-format="pdf"}
+## Architecture Design Summary {.unnumbered}
+:::
+
+

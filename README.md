@@ -5,7 +5,7 @@ Docs-as-code repository for ngGONG High Level Software, Controls and Data Manage
 This repository is set up as a Quarto project that can produce:
 
 - [A GitHub Pages website](https://nggong.github.io/docs).
-- A separate PDF for the Software Development Plan.
+- Separate PDFs for the Software Development Plan and the Software Conceptual Design.
 
 ## Local Preview
 
@@ -49,6 +49,7 @@ The website output is written to `_site/`.
 PDFs are written under `_pdf/`, preserving their source paths:
 
 - `_pdf/docs/software-development-plan.pdf`
+- `_pdf/docs/design/software-conceptual-design.pdf`
 
 `make html` builds the PDFs first so that the website's PDF download links work.
 `make preview` does not build PDFs; its download links require a prior PDF build and may point to older files.
@@ -64,6 +65,8 @@ The `pdf` profile in `_quarto-pdf.yml` selects the formal documents and their sh
 To add a formal document later, add its entry document to that profile's render list and give its website page a PDF link.
 A document can assemble multiple Markdown sources with Quarto's `include` shortcode;
 keep included fragments out of the website render list unless they are intended as standalone pages.
+The Software Conceptual Design is assembled by `docs/design/software-conceptual-design.qmd` from the section files in
+`docs/design/_conceptual/`. The include order in the entry document sets the section order in both outputs.
 PDF selection is independent of the website sidebar.
 Section numbers belong to each PDF rather than the whole website.
 
