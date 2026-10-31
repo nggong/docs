@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Software Development Plan – ngGONG Software Documentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/ngGONG-Logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ea61ebfe3ebd6c590f168e30b043f908.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="0f613bc8123d85bce68c8858dbbcb640" class="alert alert-warning hidden"><div class="quarto-announcement-content">
+<p>PR #25 preview — commit c8b40dd99cde. Proposed changes for review.</p>
+</div></div>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/software-development-plan.html">Software Development Plan</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/ngGONG-Logo.png" alt="ngGONG logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/ngGONG-Logo.png" alt="ngGONG logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../docs/software-development-plan.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Software Development Plan</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Release and Deployment</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/hls/scs/release-and-deployment-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SCS Release and Deployment Management</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Design Documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/design/software-conceptual-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Conceptual Design</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../docs/developer-guides/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developer Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">How-Tos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/developer-guides/acli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and Use Atlassian CLI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/developer-guides/docker-preview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install Docker for Documentation Preview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/developer-guides/git-commit-signing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set Up Git Commit Signing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/developer-guides/github-notifications-in-slack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get GitHub Notifications in Slack</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cross-Repository Workflow</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/developer/developer-workflow-cross-repository-library-changes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developer Workflow for Cross-Repository Library Changes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../docs/developer/github-cross-repository-library-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub Automation for Cross-Repository Library Changes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link active" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
+  <li><a href="#software-organization-and-responsibilities" id="toc-software-organization-and-responsibilities" class="nav-link" data-scroll-target="#software-organization-and-responsibilities">Software Organization and Responsibilities</a></li>
+  <li><a href="#software-development-life-cycle" id="toc-software-development-life-cycle" class="nav-link" data-scroll-target="#software-development-life-cycle">Software Development Life Cycle</a></li>
+  <li><a href="#requirements-management-and-traceability" id="toc-requirements-management-and-traceability" class="nav-link" data-scroll-target="#requirements-management-and-traceability">Requirements Management and Traceability</a></li>
+  <li><a href="#interfaces-architecture-and-design" id="toc-interfaces-architecture-and-design" class="nav-link" data-scroll-target="#interfaces-architecture-and-design">Interfaces, Architecture, and Design</a></li>
+  <li><a href="#development-environment-and-tooling" id="toc-development-environment-and-tooling" class="nav-link" data-scroll-target="#development-environment-and-tooling">Development Environment and Tooling</a></li>
+  <li><a href="#source-and-configuration-management" id="toc-source-and-configuration-management" class="nav-link" data-scroll-target="#source-and-configuration-management">Source and Configuration Management</a></li>
+  <li><a href="#coding-standards-and-review-practices" id="toc-coding-standards-and-review-practices" class="nav-link" data-scroll-target="#coding-standards-and-review-practices">Coding Standards and Review Practices</a></li>
+  <li><a href="#build-integration-and-continuous-integration" id="toc-build-integration-and-continuous-integration" class="nav-link" data-scroll-target="#build-integration-and-continuous-integration">Build, Integration, and Continuous Integration</a></li>
+  <li><a href="#verification-and-validation" id="toc-verification-and-validation" class="nav-link" data-scroll-target="#verification-and-validation">Verification and Validation</a></li>
+  <li><a href="#release-and-deployment-management" id="toc-release-and-deployment-management" class="nav-link" data-scroll-target="#release-and-deployment-management">Release and Deployment Management</a>
+  <ul class="collapse">
+  <li><a href="#controls" id="toc-controls" class="nav-link" data-scroll-target="#controls">Controls</a></li>
+  <li><a href="#dms" id="toc-dms" class="nav-link" data-scroll-target="#dms">DMS</a></li>
+  <li><a href="#hls---ocs" id="toc-hls---ocs" class="nav-link" data-scroll-target="#hls---ocs">HLS - OCS</a></li>
+  <li><a href="#hls---scs" id="toc-hls---scs" class="nav-link" data-scroll-target="#hls---scs">HLS - SCS</a></li>
+  </ul></li>
+  <li><a href="#defect-and-issue-management" id="toc-defect-and-issue-management" class="nav-link" data-scroll-target="#defect-and-issue-management">Defect and Issue Management</a></li>
+  <li><a href="#cybersecurity-coordination" id="toc-cybersecurity-coordination" class="nav-link" data-scroll-target="#cybersecurity-coordination">Cybersecurity Coordination</a></li>
+  <li><a href="#transition-to-operations-and-software-maintenance" id="toc-transition-to-operations-and-software-maintenance" class="nav-link" data-scroll-target="#transition-to-operations-and-software-maintenance">Transition to Operations and Software Maintenance</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/nggong/docs/edit/feature/cdd-stubs/docs/software-development-plan.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nggong/docs/blob/feature/cdd-stubs/docs/software-development-plan.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="../_pdf/docs/software-development-plan.pdf"><i class="bi bi-link-45deg"></i>Download PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Software Development Plan</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="purpose-and-scope" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h2>
+<p>The Software Development Plan (SDP) describes the project-level approach for planning, developing, controlling, integrating, verifying, releasing, and maintaining software for the Next-Generation Ground-based Solar Observing Network (ngGONG).</p>
+<p>For the Conceptual Design Review (CoDR), this document establishes the intended software development framework and identifies areas where detailed standards, tools, and procedures will be defined as the project matures. Over time, this plan is expected to evolve into a working standard for ngGONG software teams.</p>
+<p>This plan applies to ngGONG software delivered under Work Breakdown Structure (WBS) 9.0, High Level Software and Controls, and WBS 10.0, Data Management System. It describes software practices that are expected to be common across High Level Software, Controls, and the Data Management System, including requirements traceability, development workflow, configuration management, review, build, integration, verification, release, and maintenance.</p>
+<p>Where High Level Software and Controls, the Data Management System, or other software areas require different tools or detailed procedures, those details may be defined in subordinate standards, repository-specific documentation, interface control documents, test plans, deployment procedures, or operations procedures.</p>
+<p>This plan does not define project-level processes for document control, risk management, project reporting, budgeting, scheduling, or formal change control. Those processes are managed through ngGONG project-level systems engineering, project management, configuration management, and risk management plans. The software team participates in those processes where software work products, risks, changes, progress, or verification evidence are involved.</p>
+<p>This plan also does not define the detailed software architecture, subsystem designs, interface specifications, coding standards, cybersecurity implementation, deployment topology, test procedures, or operations runbooks. Those artifacts are maintained separately. This plan identifies where such artifacts are needed and describes how they fit into the overall software development process.</p>
+</section>
+<section id="software-organization-and-responsibilities" class="level2">
+<h2 class="anchored" data-anchor-id="software-organization-and-responsibilities">Software Organization and Responsibilities</h2>
+<p>ngGONG software is currently developed and planned by a small core team covering WBS 9.0, High Level Software and Controls, and WBS 10.0, Data Management System. During early design, one person may cover multiple software functions, including planning, technical direction, implementation, interface coordination, integration, verification, release planning, and maintenance planning.</p>
+<p>As the project matures, software responsibilities will be refined to reflect staffing, contractor scope, subsystem ownership, and operational needs. Contractor-delivered software packages are expected to follow applicable ngGONG software practices and to have an assigned ngGONG technical point of contact or software owner.</p>
+<p>Coordination across the WBS 9.0 and WBS 10.0 boundary is the responsibility of the applicable software leads. Project-level authority for staffing, budget, formal change control, risk management, document control, and project reporting is defined outside this plan.</p>
+</section>
+<section id="software-development-life-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="software-development-life-cycle">Software Development Life Cycle</h2>
+<p>ngGONG software development will use an iterative and incremental life cycle. During early design, the life cycle will emphasize requirements definition, architecture, interface definition, risk-reduction prototypes, simulations, and development infrastructure. Prototypes will be used to evaluate uncertain or high-impact technical areas before the project commits to detailed designs or implementation patterns. Early development infrastructure will include the build, test, integration, and deployment mechanisms needed to support later implementation work. As the project matures, the emphasis will shift toward implementation, integration, verification evidence, release control, deployment readiness, and operations support.</p>
+<p>The expected development flow is requirements, design, implementation, review, build, integration, verification, release, deployment, and feedback from test, commissioning, and operations. The flow is not expected to be strictly linear. Design decisions, test results, defects, interface changes, and operational feedback may cause earlier work to be revisited.</p>
+<p>ngGONG intends to use a Continuous Integration / Continuous Deployment (CI/CD)-informed development model in which software is built, tested, and integrated frequently. Continuous integration will be used to detect defects, interface changes, and integration problems early. Deployment automation will be used where appropriate, but promotion to site and operational environments will remain controlled by project and operations readiness criteria.</p>
+<p>Software integration will occur early and repeatedly, especially where behavior crosses the WBS 9.0 and WBS 10.0 boundary. Simulators, test harnesses, and representative data flows are part of the development life cycle and are expected to mature with the delivered software.</p>
+</section>
+<section id="requirements-management-and-traceability" class="level2">
+<h2 class="anchored" data-anchor-id="requirements-management-and-traceability">Requirements Management and Traceability</h2>
+<p>Software requirements define the behavior and constraints that ngGONG software must satisfy. They may include functional behavior, interfaces, data products, timing, performance, reliability, observability, deployment, maintainability, and operations-support needs.</p>
+<p>Software requirements will be derived from the ngGONG Operational Concept Definition, Operational Architecture Document, Science Requirements, Instrument Science Requirements, system and subsystem Design Requirements Documents (DRDs), interface definitions, and operations needs. Additional derived requirements may be identified through design work, prototypes, integration planning, verification planning, and externally developed software.</p>
+<p>Software requirements will use stable identifiers so that related software work can reference them. Where applicable, issues, design artifacts, pull requests, code changes, tests, release records, and verification evidence will reference the requirements they satisfy or affect. The project has not yet selected the final tooling or traceability schema, but the software process will preserve links from requirements through implementation and verification using a project-approved traceability schema. The level of traceability should match the risk and importance of the software being changed.</p>
+<p>Each software requirement should have an identified verification approach. Verification may be performed by automated test, integration test, analysis, inspection, demonstration, or operational acceptance, depending on the requirement. Where practical, automated tests should be used to support repeatable requirement verification and regression testing.</p>
+<p>Traceability is especially important where behavior crosses software subsystem or hardware-control boundaries. This includes interfaces between High Level Software and Controls, where high-level software interacts with low-level programmable logic controller (PLC) and hardware control systems, and interfaces between High Level Software, Controls, and the Data Management System, where data, metadata, status, and operational context are exchanged. These cross-boundary behaviors must be traceable to the requirements and verification evidence that govern them.</p>
+<p>Externally developed software may be produced through different contracting models, including staff augmentation, prototype studies, configured products, or delivered software packages. For software that becomes part of ngGONG, the responsible ngGONG software owner must ensure that expectations, interfaces, acceptance criteria, delivered artifacts, and maintenance responsibilities are clear before the software is accepted.</p>
+</section>
+<section id="interfaces-architecture-and-design" class="level2">
+<h2 class="anchored" data-anchor-id="interfaces-architecture-and-design">Interfaces, Architecture, and Design</h2>
+<p>Interfaces will be defined in forms that can be reviewed, version controlled, and tested. Where practical, ngGONG will use repository-controlled schemas, <a href="https://protobuf.dev/">Protocol Buffer</a> definitions, interface definition files, data models, or API specifications as the authoritative interface definition. The repository that owns an interface definition should produce the generated artifacts needed by both producers and consumers. Prose interface control documents may still be used, but they should explain intent, ownership, compatibility expectations, and operational assumptions rather than duplicate machine-readable definitions.</p>
+<p>The interface between High Level Software and Controls is a major design boundary. It includes commands, state models, telemetry, alarms, timing behavior, interlocks, fault handling, and recovery behavior across the boundary between high-level software and low-level Programmable Logic Controller (PLC) and hardware control systems. The interfaces between High Level Software, Controls, and the Data Management System are also controlled design boundaries, especially for data products, metadata, provenance, transfer status, and reduction context.</p>
+<p>Design decisions that affect more than one team or subsystem will be captured in a durable form, such as repository documentation, interface definitions, or architecture decision records. Simulators, test harnesses, and representative data flows may be developed as part of the design when hardware, site systems, or Data Management System services are not yet available.</p>
+</section>
+<section id="development-environment-and-tooling" class="level2">
+<h2 class="anchored" data-anchor-id="development-environment-and-tooling">Development Environment and Tooling</h2>
+<p>ngGONG will define development environment and tooling expectations as the software architecture and implementation technologies mature. At this stage, the intent is to standardize where practical while allowing High Level Software, Controls, and the Data Management System to use tools that fit their technical needs.</p>
+<p>Each software repository should document the tools and environment needed to build, test, and run the software it contains. This may include compilers, runtimes, package managers, test tools, simulators, configuration files, environment variables, credentials, and external services. The goal is that a new developer, contractor, or reviewer can reproduce the development setup without relying on undocumented local knowledge.</p>
+<p>Tooling choices should support repeatable build, test, static analysis, packaging, deployment, and integration activities where practical. Scripted, containerized, or otherwise reproducible development environments may be used when they reduce setup drift, improve continuous integration, or make contractor handoff more reliable.</p>
+</section>
+<section id="source-and-configuration-management" class="level2">
+<h2 class="anchored" data-anchor-id="source-and-configuration-management">Source and Configuration Management</h2>
+<p>ngGONG will use GitHub as the primary source-control platform for delivered software. Software repositories should be maintained under the <a href="https://github.com/nggong">ngGONG GitHub organization</a> unless a specific exception is needed.</p>
+<p>Repository contents are controlled software artifacts. This includes source code, tests, build definitions, interface definitions, configuration schemas, deployment definitions, scripts, and repository documentation needed to build, verify, deploy, or maintain the software. Repositories should preserve enough dependency, build, and configuration information to recreate released software versions.</p>
+<p>ngGONG will use a multi-repository strategy where repository boundaries reflect ownership, release cadence, deployment scope, and interface responsibility. Shared interface definitions, common schemas, deployment definitions, and reusable integration tooling should be maintained in repositories with clear ownership and compatibility controls. Each repository should have an accountable ngGONG software owner or lead.</p>
+<p>Normal development should use a trunk-based workflow with short-lived branches. The primary branch should be protected from direct commits. Changes that affect delivered software, interfaces, tests, deployment behavior, or operational behavior should be merged through pull requests or an equivalent reviewed-change mechanism after required automated checks pass.</p>
+<p>Controlled versions of software and interface definitions should be identifiable by tags, releases, commit secure hash algorithm (SHA) values, or equivalent version identifiers. Changes should reference related requirements, issues, defects, interface changes, releases, or deployments where applicable. Generated artifacts should be excluded from source control unless there is a clear reproducibility, delivery, review, or operational reason to include them.</p>
+</section>
+<section id="coding-standards-and-review-practices" class="level2">
+<h2 class="anchored" data-anchor-id="coding-standards-and-review-practices">Coding Standards and Review Practices</h2>
+<p>ngGONG will define coding standards by repository or technology area as implementation languages, frameworks, and runtime environments are selected. Where practical, repositories should use established external standards rather than project-specific style rules. <a href="https://google.github.io/styleguide/">Google style guides</a> may be used as baseline references where they fit the selected language or ecosystem.</p>
+<p>Coding standards should support readable, maintainable, testable software that can be operated and modified over the lifetime of ngGONG. Repository conventions should identify formatting, naming, static analysis, linting, dependency-management, documentation, and test expectations that apply to the software in that repository.</p>
+<p>Changes that affect delivered software, interfaces, tests, deployment behavior, or operational behavior should be reviewed before merge. Review depth should match the risk and impact of the change. Small internal changes may need only a lightweight review, while changes to interfaces, safety-relevant behavior, deployment mechanisms, data products, or operations workflows require more careful review.</p>
+<p>Code review should evaluate correctness, maintainability, test coverage, interface impact, operational impact, and consistency with repository conventions. Automated checks should be used where practical for formatting, linting, static analysis, dependency checks, and test execution. Human review remains responsible for design judgment, operational judgment, and risks that automated tools cannot reliably assess. AI-assisted review may be used when helpful, but it does not replace accountable human review.</p>
+<p>Known exceptions to coding standards or review expectations should be documented where they affect delivered software, interfaces, operations, or long-term maintenance. New or modified tests should be included where practical for changed behavior, fixed defects, and interface changes.</p>
+</section>
+<section id="build-integration-and-continuous-integration" class="level2">
+<h2 class="anchored" data-anchor-id="build-integration-and-continuous-integration">Build, Integration, and Continuous Integration</h2>
+<p>Build, integration, and continuous integration practices provide the mechanism for building ngGONG software repeatably, integrating software early, and detecting defects before they accumulate. Each delivered software repository should provide documented build instructions and should build from version-controlled source and declared dependencies.</p>
+<p>Controlled builds should record or preserve the source commit, dependency versions, build tools, build configuration, and build environment needed to reproduce the build. This information may be stored in the repository, continuous integration (CI) records, artifact metadata, or release records, depending on the repository and release model. Build outputs should be traceable to the source version, dependency versions, and build process that produced them. Generated interface artifacts should normally be treated as build products unless there is a clear reason to maintain them in source control.</p>
+<p>Continuous integration should be used for pull requests and primary-branch changes where practical. CI checks should match the needs of the repository and may include compilation, unit tests, linting, static analysis, packaging, schema validation, and interface compatibility checks. Fast checks should be suitable for routine pull requests. More expensive integration tests may run on a schedule, on release candidates, or in dedicated integration contexts.</p>
+<p>Interface definitions are build inputs and should be checked for compatibility with affected producers and consumers where practical. Integration should begin before all delivered hardware, site systems, or Data Management System services are available. Simulators, emulators, test harnesses, representative data, and mocked services may be used to support early integration.</p>
+<p>Build, integration, and continuous integration practices should support integration across High Level Software, Controls, and the Data Management System, especially where command behavior, state transitions, Programmable Logic Controller (PLC) and hardware-control boundaries, telemetry, alarms, metadata, provenance, and data transfer are involved. CI results provide evidence that automated checks passed, but they do not by themselves approve software for site or operational deployment.</p>
+</section>
+<section id="verification-and-validation" class="level2">
+<h2 class="anchored" data-anchor-id="verification-and-validation">Verification and Validation</h2>
+<p>Software verification provides evidence that ngGONG software satisfies its allocated requirements. Software validation provides evidence that the software supports the intended operational and science use when integrated into the ngGONG system. This section describes the software evidence strategy; detailed test procedures, acceptance criteria, commissioning plans, and operations validation plans are maintained separately.</p>
+<p>Each software requirement should have an identified verification method. Verification methods may include automated test, integration test, analysis, inspection, demonstration, or operational acceptance. The depth of verification should match the risk and impact of the requirement. Where practical, automated tests should be used for repeatable behavior, interface compatibility, regression testing, data validation, and failure handling.</p>
+<p>Software verification will use multiple test levels where applicable, including unit, integration, system, interface, performance, fault and recovery, and acceptance testing. Early verification may use prototypes, simulations, emulators, representative data, mocked services, and test harnesses before all delivered hardware, station systems, or Data Management System services are available. Repository-specific test strategies may be used, but cross-subsystem behavior should be verified in representative integration contexts.</p>
+<p>Verification is especially important where behavior crosses software subsystem or hardware-control boundaries. High Level Software and Controls verification should cover commands, state transitions, telemetry, alarms, timing behavior, interlocks, fault handling, and recovery behavior across the boundary between high-level software and low-level Programmable Logic Controller (PLC) and hardware control systems. Interfaces between High Level Software, Controls, and the Data Management System should be verified for data products, metadata, provenance, transfer status, completeness, integrity, and reduction context.</p>
+<p>Verification evidence should be traceable to requirements, issues, builds, releases, and test results where applicable. Continuous integration results may provide part of this evidence, but passing automated checks alone does not necessarily establish readiness for acceptance, site deployment, or operations. Regression tests should be added for fixed defects where practical.</p>
+</section>
+<section id="release-and-deployment-management" class="level2">
+<h2 class="anchored" data-anchor-id="release-and-deployment-management">Release and Deployment Management</h2>
+<p>ngGONG release and deployment practices will identify what software was built, what combination of artifacts was qualified, what release is approved for deployment, and what release is installed in each environment or station. Release and deployment details may differ across High Level Software, Controls, and the Data Management System because those systems have different runtime models, hardware dependencies, operational constraints, and deployment mechanisms.</p>
+<p>Release processes should separate build identity, artifact identity, release identity, and deployment state. A build identifies the output of one component build. An artifact identifies immutable content, such as a container image digest or published package. A release identifies a tested composition of artifacts and deployment configuration. Deployment state identifies the release approved or installed for a specific environment, channel, or station.</p>
+<p>Released software should be traceable to source revisions, dependency versions, build records, configuration revisions, verification evidence, and deployment records. Promotion to an operational environment is a controlled deployment decision; it is not the same as passing continuous integration or publishing a build artifact.</p>
+<p>For additional details about the various work products see their specific release and deployment management plans:</p>
+<ul>
+<li>Controls
+<ul>
+<li>SIS</li>
+</ul></li>
+<li>Data Management System</li>
+<li>Observatory Control System</li>
+</ul>
+<ul>
+<li><a href="../docs/hls/scs/release-and-deployment-management.html">Station Control System</a>.</li>
+</ul>
+<section id="controls" class="level3">
+<h3 class="anchored" data-anchor-id="controls">Controls</h3>
+<p>The release and deployment strategy for Controls is not yet defined. Controls deployment may require different practices because it includes low-level Programmable Logic Controller (PLC), hardware-control, safety, interlock, vendor-tool, and station-maintenance constraints. Controls-specific release practices will be defined with the Controls design, hardware integration approach, and operations procedures.</p>
+</section>
+<section id="dms" class="level3">
+<h3 class="anchored" data-anchor-id="dms">DMS</h3>
+<p>The release and deployment strategy for the Data Management System (DMS) is not yet defined. DMS deployment may require different practices because it includes data pipelines, storage systems, processing environments, data-product compatibility, and operational data retention concerns. DMS-specific release practices will be defined with the DMS architecture, pipeline design, and operations model.</p>
+</section>
+<section id="hls---ocs" class="level3">
+<h3 class="anchored" data-anchor-id="hls---ocs">HLS - OCS</h3>
+<p>The release and deployment strategy for the High Level Software (HLS) Observatory Control System (OCS) is not yet defined. The OCS strategy will be developed as the OCS architecture, deployment model, operations role, and interface responsibilities mature.</p>
+</section>
+<section id="hls---scs" class="level3">
+<h3 class="anchored" data-anchor-id="hls---scs">HLS - SCS</h3>
+<p>The HLS Site Control System (SCS) release strategy uses immutable component artifacts and immutable system release manifests. Component builds produce artifacts such as container images or published packages. Human-readable tags or channels may be used for navigation, but deployment decisions should resolve to immutable artifact identifiers.</p>
+<p>Each deployable SCS component should have a continuous integration pipeline that builds the component, runs the applicable automated checks, verifies relevant interfaces, publishes the artifact, and records the immutable artifact identity. A component-level candidate means that the component passed its own checks and is eligible for inclusion in an SCS release candidate. It does not mean that the component has passed SCS system qualification or is approved for production deployment.</p>
+<p>An SCS deployment repository should define deployment configuration and compose SCS release candidates. The release-composition process should resolve each required component to an immutable artifact identity, identify the deployment-configuration revision, generate an immutable release manifest, assign a unique SCS release identifier, and archive the manifest before deployment or qualification. The process should fail rather than create an incomplete release when required components, configuration, or provenance cannot be resolved.</p>
+<p>The SCS release manifest is the system-level release artifact. It records the exact component artifacts and deployment configuration that were qualified. At minimum, the manifest should identify the SCS release, the creating pipeline or process, the deployment repository revision, component artifact identities, component source revisions, configuration revisions, applicable schema or migration levels, and available provenance records. The manifest should be machine-validated.</p>
+<p>SCS qualification should test the exact release manifest under evaluation. New component candidates published while qualification is in progress should not change the release being tested. If qualification succeeds, an authorized promotion process may advance the applicable deployment channel to the qualified release. Promotion should use the same manifest and artifact identities that passed qualification; it should not rebuild component artifacts or create a replacement manifest.</p>
+<p>SCS deployment channels are mutable pointers to immutable release manifests. A channel may represent a candidate release, a production release, or a station-specific approved release. Stations should deploy only the release approved for their applicable channel and should not deploy from component-level candidate tags, production tags, or latest tags. Before deploying, a station should confirm that the selected release remains approved and has not been revoked.</p>
+<p>Promotion, revocation, and rollback are separate operations. Promotion advances a channel to a qualified release. Revocation prevents future deployment of a defective or withdrawn release. Rollback changes desired or installed state to a prior known-good release when that is operationally safe. Revoked release manifests, artifacts, evidence, and deployment history should be retained rather than modified or deleted.</p>
+<p>Rollback should not be assumed to be safe for stateful components. Database migrations, persisted data formats, protocol state, and controller configuration may require a forward fix or a specific recovery procedure. Stateful SCS components should declare whether rollback is supported, requires state restoration, or is not supported for a given release transition.</p>
+<p>SCS release, channel, qualification, revocation, rollback, and station deployment records should use stable identifiers. The records should make it possible to determine which source revisions produced each artifact, which artifacts formed each release, which configuration was applied, which tests qualified the release, who or what promoted or revoked it, and which release each station installed.</p>
+</section>
+</section>
+<section id="defect-and-issue-management" class="level2">
+<h2 class="anchored" data-anchor-id="defect-and-issue-management">Defect and Issue Management</h2>
+<p>ngGONG software issues will be tracked in a common issue-tracking system where practical. The project has not yet selected the final software issue-tracking tool. Candidate tools include <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues">GitHub Issues</a> and <a href="https://confluence.atlassian.com/jira">Atlassian Jira</a>. The selected approach should support traceability across software work, requirements, pull requests, builds, releases, verification evidence, and deployment records.</p>
+<p>Software issue tracking should include defects, enhancement requests, technical tasks, interface changes, test failures, integration problems, and operational software problems. Issues should contain enough information to reproduce, evaluate, prioritize, assign, and close the work. Each issue should identify the affected subsystem, repository, interface, deployment context, or test environment where applicable.</p>
+<p>Defects should be classified by severity and impact. Relevant impact areas include operations, data products, safety or hardware-control behavior, interfaces, integration, deployment, and maintenance. Each issue should have an accountable software owner or lead for triage and resolution. Cross-subsystem issues should be triaged with the affected leads, especially where behavior crosses the High Level Software and Controls boundary or the High Level Software, Controls, and Data Management System boundary.</p>
+<p>Fixed defects should include regression tests or other verification evidence where practical. Known limitations, accepted defects, deferred fixes, and waivers should be recorded when they affect delivered software, operations, interfaces, or long-term maintenance. Defect history should be preserved well enough to support release decisions, operational troubleshooting, and maintenance planning.</p>
+<p>Software defects should be escalated into project-level risk management, configuration management, or change-control processes when their impact warrants project-level handling. Recurring or systemic defects should be treated as evidence that requirements, design, tests, tooling, or operational procedures may need improvement.</p>
+</section>
+<section id="cybersecurity-coordination" class="level2">
+<h2 class="anchored" data-anchor-id="cybersecurity-coordination">Cybersecurity Coordination</h2>
+<ul>
+<li>Cybersecurity requirements, controls, assessment expectations, and incident-response procedures are defined through project-level cybersecurity or systems engineering processes, not by this Software Development Plan.</li>
+<li>Software teams coordinate with the project cybersecurity owner to apply applicable requirements to repositories, dependencies, continuous integration and deployment mechanisms, credentials, network interfaces, logging, and operational software.</li>
+<li>Software designs and releases identify security-relevant assumptions or dependencies where they affect architecture, interfaces, deployment, or operations.</li>
+<li>Cybersecurity findings that require software changes are tracked through the selected software issue-tracking process, with escalation to project-level risk management or change control when warranted.</li>
+<li>Detailed security control selection, threat analysis, authorization, vulnerability management policy, and incident-response procedures are owned by the responsible cybersecurity lead or team.</li>
+</ul>
+</section>
+<section id="transition-to-operations-and-software-maintenance" class="level2">
+<h2 class="anchored" data-anchor-id="transition-to-operations-and-software-maintenance">Transition to Operations and Software Maintenance</h2>
+<ul>
+<li>Software transition-to-operations planning will mature with the ngGONG operations concept, commissioning plan, site deployment model, and staffing model.</li>
+<li>Software delivered for operations should include the documentation, build records, release records, configuration information, verification evidence, and known-issue records needed to support operational use and maintenance.</li>
+<li>Operational software should provide appropriate observability, including logs, status, health information, metrics, alarms, or diagnostics needed for troubleshooting and maintenance.</li>
+<li>Software maintenance planning should address defect correction, dependency updates, interface changes, security updates, configuration changes, and compatibility with deployed hardware, site systems, and data-processing environments.</li>
+<li>Transition planning should identify which software components are maintained by ngGONG staff, contractors, vendors, or operations personnel.</li>
+<li>Operations-facing software should support controlled update, rollback, recovery, and configuration-management practices appropriate to its role and risk.</li>
+<li>Lessons learned from integration, commissioning, and early operations should feed back into requirements, design, tests, documentation, and maintenance priorities.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nggong\.github\.io\/docs\/pr\/25\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Draft post-v0.0.3 gc8b40dd</p>
+<p>© Copyright 2026 Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA).</p>
+<p>The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA), and funded under a cooperative agreement with the NSF.</p>
+<p>Except where otherwise noted, this documentation is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nggong/docs/edit/feature/cdd-stubs/docs/software-development-plan.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nggong/docs/blob/feature/cdd-stubs/docs/software-development-plan.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

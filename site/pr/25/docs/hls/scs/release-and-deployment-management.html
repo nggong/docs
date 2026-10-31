@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>release-and-deployment-management – ngGONG Software Documentation</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../assets/ngGONG-Logo.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-ea61ebfe3ebd6c590f168e30b043f908.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="0f613bc8123d85bce68c8858dbbcb640" class="alert alert-warning hidden"><div class="quarto-announcement-content">
+<p>PR #25 preview — commit c8b40dd99cde. Proposed changes for review.</p>
+</div></div>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/software-development-plan.html">Software Development Plan</a></li><li class="breadcrumb-item"><a href="../../../docs/hls/scs/release-and-deployment-management.html">Release and Deployment</a></li><li class="breadcrumb-item"><a href="../../../docs/hls/scs/release-and-deployment-management.html">SCS Release and Deployment Management</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      <img src="../../../assets/ngGONG-Logo.png" alt="ngGONG logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../../assets/ngGONG-Logo.png" alt="ngGONG logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/software-development-plan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Development Plan</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Release and Deployment</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/hls/scs/release-and-deployment-management.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">SCS Release and Deployment Management</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Design Documents</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/design/software-conceptual-design.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software Conceptual Design</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/developer-guides/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developer Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">How-Tos</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/developer-guides/acli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install and Use Atlassian CLI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/developer-guides/docker-preview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install Docker for Documentation Preview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/developer-guides/git-commit-signing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Set Up Git Commit Signing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/developer-guides/github-notifications-in-slack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Get GitHub Notifications in Slack</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cross-Repository Workflow</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/developer/developer-workflow-cross-repository-library-changes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Developer Workflow for Cross-Repository Library Changes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/developer/github-cross-repository-library-workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GitHub Automation for Cross-Repository Library Changes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scs-release-and-deployment-management" id="toc-scs-release-and-deployment-management" class="nav-link active" data-scroll-target="#scs-release-and-deployment-management">SCS Release and Deployment Management</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-scope" id="toc-purpose-and-scope" class="nav-link" data-scroll-target="#purpose-and-scope">Purpose and Scope</a></li>
+  <li><a href="#artifact-management" id="toc-artifact-management" class="nav-link" data-scroll-target="#artifact-management">Artifact Management</a>
+  <ul class="collapse">
+  <li><a href="#reusable-library-versions" id="toc-reusable-library-versions" class="nav-link" data-scroll-target="#reusable-library-versions">Reusable Library Versions</a></li>
+  </ul></li>
+  <li><a href="#component-candidate-selection" id="toc-component-candidate-selection" class="nav-link" data-scroll-target="#component-candidate-selection">Component Candidate Selection</a></li>
+  <li><a href="#scs-release-composition" id="toc-scs-release-composition" class="nav-link" data-scroll-target="#scs-release-composition">SCS Release Composition</a>
+  <ul class="collapse">
+  <li><a href="#release-manifest-contents" id="toc-release-manifest-contents" class="nav-link" data-scroll-target="#release-manifest-contents">Release Manifest Contents</a></li>
+  </ul></li>
+  <li><a href="#qualification-and-promotion" id="toc-qualification-and-promotion" class="nav-link" data-scroll-target="#qualification-and-promotion">Qualification and Promotion</a></li>
+  <li><a href="#deployment-channels" id="toc-deployment-channels" class="nav-link" data-scroll-target="#deployment-channels">Deployment Channels</a></li>
+  <li><a href="#station-deployment" id="toc-station-deployment" class="nav-link" data-scroll-target="#station-deployment">Station Deployment</a></li>
+  <li><a href="#revocation-and-rollback" id="toc-revocation-and-rollback" class="nav-link" data-scroll-target="#revocation-and-rollback">Revocation and Rollback</a></li>
+  <li><a href="#retention-and-pruning" id="toc-retention-and-pruning" class="nav-link" data-scroll-target="#retention-and-pruning">Retention and Pruning</a></li>
+  <li><a href="#traceability-and-audit-records" id="toc-traceability-and-audit-records" class="nav-link" data-scroll-target="#traceability-and-audit-records">Traceability and Audit Records</a></li>
+  <li><a href="#roles-and-responsibilities" id="toc-roles-and-responsibilities" class="nav-link" data-scroll-target="#roles-and-responsibilities">Roles and Responsibilities</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/nggong/docs/edit/feature/cdd-stubs/docs/hls/scs/release-and-deployment-management.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nggong/docs/blob/feature/cdd-stubs/docs/hls/scs/release-and-deployment-management.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/software-development-plan.html">Software Development Plan</a></li><li class="breadcrumb-item"><a href="../../../docs/hls/scs/release-and-deployment-management.html">Release and Deployment</a></li><li class="breadcrumb-item"><a href="../../../docs/hls/scs/release-and-deployment-management.html">SCS Release and Deployment Management</a></li></ol></nav></header>
+
+
+
+
+<section id="scs-release-and-deployment-management" class="level1">
+<h1>SCS Release and Deployment Management</h1>
+<section id="purpose-and-scope" class="level2">
+<h2 class="anchored" data-anchor-id="purpose-and-scope">Purpose and Scope</h2>
+<p>This section defines how ngGONG Station Control System (SCS) build artifacts are identified, assembled into SCS releases, qualified, promoted, deployed, revoked, rolled back, and retained. The process applies to the SCS and can be adapted for other software systems.</p>
+<p>The process separates four concepts that must not be conflated:</p>
+<ol type="1">
+<li><strong>Build identity</strong> identifies the output of one component build.</li>
+<li><strong>Artifact identity</strong> identifies immutable artifact content, such as a container-image digest.</li>
+<li><strong>Release identity</strong> identifies one tested composition of component artifacts and deployment configuration.</li>
+<li><strong>Deployment state</strong> identifies the release currently approved for a channel or station.</li>
+</ol>
+<p>Container images and release manifests are immutable. Names such as <code>candidate</code>, <code>production</code>, and station-specific deployment channels are mutable pointers to immutable objects.</p>
+</section>
+<section id="artifact-management" class="level2">
+<h2 class="anchored" data-anchor-id="artifact-management">Artifact Management</h2>
+<p>Source code shall be maintained in Git repositories. Build artifacts shall be published to repositories designed for their artifact type rather than committed to Git.</p>
+<ul>
+<li>Reusable libraries (e.g.&nbsp;a Java .jar) shall be published to an artifact repository (e.g.&nbsp;Maven) when another component consumes them as dependencies.</li>
+<li>Deployable services shall be published as container images to a container registry.</li>
+<li>A service does not need a separately published library unless another component consumes that library.</li>
+<li>System release manifests shall be stored as immutable release artifacts in the SCS deployment repository, such as assets attached to GitHub Releases.</li>
+</ul>
+<p>Artifact versioning shall reflect how the artifact is consumed:</p>
+<ul>
+<li>Reusable libraries that are selected independently by downstream builds shall use Semantic Versions.</li>
+<li>Deployable applications and their container images shall use CI-generated build identifiers rather than Semantic Versions.</li>
+<li>Interface and schema versions shall be managed independently when consumers need explicit compatibility information.</li>
+<li>The deployed SCS shall be versioned through its release manifest rather than through a shared application version.</li>
+</ul>
+<p>An application build identifier shall be generated entirely by CI. Developers shall not edit or increment it in source. A format similar to the following is recommended:</p>
+<pre class="text"><code>&lt;UTC-date&gt;.&lt;CI-run-id&gt;.&lt;run-attempt&gt;</code></pre>
+<p>For example:</p>
+<pre class="text"><code>20261007.4387291542.1</code></pre>
+<p>The date provides human context, the CI run ID provides repository-scoped uniqueness, and the attempt distinguishes reruns that could produce different artifacts. The exact field definitions shall be documented for the selected CI system.</p>
+<p>The source revision and creation time shall instead be recorded as structured artifact metadata, including the applicable OCI annotations:</p>
+<pre class="text"><code>org.opencontainers.image.version
+org.opencontainers.image.created
+org.opencontainers.image.revision
+org.opencontainers.image.source</code></pre>
+<p>Human-readable tags may be used for navigation, but deployment decisions shall use immutable container-image digests. A tag such as <code>candidate</code> may move when a newer eligible build becomes available; a digest such as <code>sha256:abc123...</code> identifies fixed content.</p>
+<section id="reusable-library-versions" class="level3">
+<h3 class="anchored" data-anchor-id="reusable-library-versions">Reusable Library Versions</h3>
+<p>Reusable libraries, including JARs generated from shared Protocol Buffer definitions, shall use Semantic Versions. The compatibility policy for each library shall define what constitutes a major, minor, or patch change. For a shared Protocol Buffer library, the default policy is:</p>
+<ul>
+<li>incompatible wire, generated-API, or defined semantic changes require a major increment;</li>
+<li>backward-compatible additions to the published interface require a minor increment; and</li>
+<li>compatible corrections that do not add published interface surface require a patch increment.</li>
+</ul>
+<p>Automated schema-compatibility checks shall verify that a breaking change is not published without the required version transition. A major version increment labels a compatibility break; it does not replace the migration or coexistence plan needed by deployed consumers.</p>
+<p>Official library versions shall be immutable and shall be derived from, or verified against, protected Git release tags. Release-tag protection shall restrict creation to authorized identities and prevent modification or deletion after publication. Whether release tags must also be cryptographically signed, and which identities may create them, remain <strong>TBD</strong>. The source POM may use Maven CI-friendly version placeholders so normal development does not require developers to edit a shared version field. Release automation shall resolve the placeholder to the approved Semantic Version when it publishes the library.</p>
+<p>Pull-request and local-development artifacts may use versions such as:</p>
+<pre class="text"><code>0.0.0-pr.417-SNAPSHOT
+0.0.0-local-SNAPSHOT</code></pre>
+<p>These versions are temporary integration aids. They shall <strong>not</strong> be referenced by the main branch of a consuming application, included in an SCS release manifest, or deployed to production. Application repositories shall have a required merge check that rejects temporary and snapshot dependencies.</p>
+<p>The CI pipeline shall verify externally sourced dependencies and build inputs against the project’s software supply-chain acceptance policy before publishing component artifacts. Verification results shall be associated with the published artifacts.</p>
+<p>Published artifacts should include, when supported by the build and registry infrastructure:</p>
+<ul>
+<li>the source commit identifier;</li>
+<li>build and dependency metadata;</li>
+<li>a software bill of materials (SBOM);</li>
+<li>provenance or build attestations; and</li>
+<li>vulnerability-scan results or a reference to the applicable scan record.</li>
+</ul>
+</section>
+</section>
+<section id="component-candidate-selection" class="level2">
+<h2 class="anchored" data-anchor-id="component-candidate-selection">Component Candidate Selection</h2>
+<p>The Developer Guide describes the <a href="../../../docs/developer/developer-workflow-cross-repository-library-changes.html">cross-repository library change workflow</a> and its <a href="../../../docs/developer/github-cross-repository-library-workflows.html">proposed GitHub automation</a>.</p>
+<p>Each deployable component shall have its own CI pipeline. The pipeline shall, at minimum:</p>
+<ol type="1">
+<li>compile and package the component;</li>
+<li>run unit and component tests;</li>
+<li>run static analysis and other required quality and security checks;</li>
+<li>verify applicable API, message-schema, and interface contracts;</li>
+<li>build the container image;</li>
+<li>publish the image under a unique build identifier; and</li>
+<li>resolve and record the published image digest.</li>
+</ol>
+<p>The application build identifier shall be injected by CI. It shall not be committed to the application source tree. The component image shall record the exact released versions of its reusable dependencies in its build metadata or SBOM.</p>
+<p>After these checks pass, the component’s <code>candidate</code> channel may be advanced to the new image digest. At the component level, <code>candidate</code> means only that the artifact passed its own CI and is eligible for inclusion in a system release candidate. It does not mean that the component has passed SCS system testing or is approved for production.</p>
+<p>Interface changes should be additive by default. Breaking changes shall use an explicit interface-version transition and, when practical, an expand-and-contract sequence that permits old and new component versions to coexist during deployment. Exhaustive pairwise old/new integration testing is not required for every component build. Fast contract and schema-compatibility checks shall protect service boundaries in component CI, while assembled-system tests shall run against a fixed SCS composition.</p>
+</section>
+<section id="scs-release-composition" class="level2">
+<h2 class="anchored" data-anchor-id="scs-release-composition">SCS Release Composition</h2>
+<p>A dedicated SCS deployment repository shall define deployment configuration and create system release candidates. On a scheduled trigger (daily), or on an authorized manual trigger, its release-composition pipeline shall:</p>
+<ol type="1">
+<li>identify the current eligible candidate for each required SCS component;</li>
+<li>resolve every candidate tag or channel to an immutable image digest;</li>
+<li>identify the exact deployment-configuration revision;</li>
+<li>generate an immutable SCS release manifest;</li>
+<li>assign the manifest a unique SCS release identifier;</li>
+<li>archive the manifest before deployment;</li>
+<li>advance the SCS <code>candidate</code> channel to the new release identifier; and</li>
+<li>request deployment of that release to the test environment.</li>
+</ol>
+<p>The pipeline shall fail rather than create an incomplete manifest when a required component cannot be resolved or its provenance cannot be verified.</p>
+<p>An SCS release identifier may use a date and sequence number, for example:</p>
+<pre class="text"><code>2026.09.01.01</code></pre>
+<p>Once assigned, a release identifier shall never be reused for different content.</p>
+<section id="release-manifest-contents" class="level3">
+<h3 class="anchored" data-anchor-id="release-manifest-contents">Release Manifest Contents</h3>
+<p>The release manifest is the system-level release artifact. It declares the exact content that was tested; it is not a copy of the component images. At minimum, it shall record:</p>
+<ul>
+<li>the SCS release identifier;</li>
+<li>the creation time and creating pipeline run;</li>
+<li>the source revision of the deployment repository;</li>
+<li>every component name, image location, image digest, build identifier, and source revision;</li>
+<li>the deployment-configuration revision;</li>
+<li>applicable configuration-schema and database-migration levels;</li>
+<li>references to SBOMs, attestations, and other provenance records where available; and</li>
+<li>manifest format or schema version.</li>
+</ul>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">schema_version</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">release</span><span class="kw">:</span><span class="at"> </span><span class="fl">2026.09.01.01</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">created</span><span class="kw">:</span><span class="at"> 2026-09-01T22:00:00Z</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">deployment_revision</span><span class="kw">:</span><span class="at"> 71bd8af</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">acquisition</span><span class="kw">:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> ghcr.io/nggong/scs-acquisition@sha256:aaa...</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="fl">20260901.4387291542.1</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source_revision</span><span class="kw">:</span><span class="at"> 4f92ac1</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sa</span><span class="kw">:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> ghcr.io/nggong/scs-sa@sha256:bbb...</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="fl">20260901.4387291668.1</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source_revision</span><span class="kw">:</span><span class="at"> ab12c34</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">transfer</span><span class="kw">:</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">image</span><span class="kw">:</span><span class="at"> ghcr.io/nggong/scs-transfer@sha256:ccc...</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">build</span><span class="kw">:</span><span class="at"> </span><span class="fl">20260901.4387292017.1</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">source_revision</span><span class="kw">:</span><span class="at"> 9981def</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu">configuration</span><span class="kw">:</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">schema</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">database_migration</span><span class="kw">:</span><span class="at"> </span><span class="dv">17</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The manifest schema shall be machine-validated. Its canonical content should also be signed or covered by a repository or release attestation.</p>
+</section>
+</section>
+<section id="qualification-and-promotion" class="level2">
+<h2 class="anchored" data-anchor-id="qualification-and-promotion">Qualification and Promotion</h2>
+<p>The test environment shall consume the SCS <code>candidate</code> channel and deploy the exact release manifest referenced by that channel. It shall not independently select the latest component images.</p>
+<p>System qualification shall include the applicable integration, system, operational, upgrade, and regression tests. Qualification results shall be associated with the exact SCS release identifier and manifest digest. New component candidates published while qualification is in progress shall not alter the release under test; they are eligible only for a later composition.</p>
+<p>If qualification fails:</p>
+<ul>
+<li>the release shall not be promoted;</li>
+<li>the failed manifest and results shall be retained for traceability;</li>
+<li>the SCS <code>candidate</code> channel may advance to a later corrected release; and</li>
+<li>no component image or release manifest shall be changed in place.</li>
+</ul>
+<p>If qualification succeeds, an authorized promotion workflow shall advance the <code>production</code> channel to the qualified release identifier. The workflow shall promote the same manifest and image digests that passed testing. It shall not rebuild the component images or generate a replacement manifest.</p>
+<p>Promotion is therefore a deployment-state change:</p>
+<pre class="text"><code>candidate  -&gt; 2026.09.01.02
+production -&gt; 2026.09.01.01</code></pre>
+<p>It is not a change to the artifacts referenced by either release.</p>
+</section>
+<section id="deployment-channels" class="level2">
+<h2 class="anchored" data-anchor-id="deployment-channels">Deployment Channels</h2>
+<p>A deployment channel is a mutable, version-controlled pointer to an immutable release manifest. The deployment repository or an NSO-controlled deployment service derived from it shall be the authoritative source of channel state.</p>
+<p>The project shall not use GitHub’s <code>latest</code> release designation, a container <code>latest</code> tag, or lexicographic sorting of release names as the production-approval mechanism. Stations shall request the release explicitly approved for their applicable channel.</p>
+<p>The channel model should allow a global production release and controlled exceptions, for example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">production</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">release</span><span class="kw">:</span><span class="at"> </span><span class="fl">2026.09.01.01</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">station_overrides</span><span class="kw">:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">mauna-loa</span><span class="kw">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">release</span><span class="kw">:</span><span class="at"> </span><span class="fl">2026.08.29.01</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reason</span><span class="kw">:</span><span class="at"> maintenance-hold</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">revoked</span><span class="kw">:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">release</span><span class="kw">:</span><span class="at"> </span><span class="fl">2026.08.30.01</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reason</span><span class="kw">:</span><span class="at"> NGGONG-1234</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Changes to production and station-specific channels shall be authenticated, authorized, auditable, and recoverable through version history. Normal promotion should use the standard review process. A documented emergency process shall permit an authorized operator to revoke or roll back a release without waiting for the normal release schedule.</p>
+</section>
+<section id="station-deployment" class="level2">
+<h2 class="anchored" data-anchor-id="station-deployment">Station Deployment</h2>
+<p>At each scheduled deployment opportunity, the station shall retrieve current channel and revocation state from the authoritative source to determine whether a deployment is authorized. The deployment state shall be signed or authenticated. The station shall not retain a pending deployment request for execution at a later opportunity without repeating that check. A station deployment agent shall:</p>
+<ol type="1">
+<li>retrieve the release approved for the station’s applicable channel;</li>
+<li>retrieve the current revocation state;</li>
+<li>determine whether the release approved for that station differs from the locally installed release;</li>
+<li>verify the release manifest, provenance, and referenced image digests;</li>
+<li>stage required artifacts without changing the running system, where practical;</li>
+<li>deploy during a locally appropriate operational window;</li>
+<li>run required post-deployment health checks; and</li>
+<li>report and retain the installed release identifier and deployment result.</li>
+</ol>
+<p>Stations shall deploy only artifacts named by the approved release manifest. They shall not follow component-level <code>candidate</code>, <code>production</code>, or <code>latest</code> tags.</p>
+<p>Station deployment shall verify current release authorization and confirm that retrieved artifacts match the identities recorded in the approved release manifest. Stations are not required to repeat the supply-chain checks performed by CI.</p>
+<p>Detailed cybersecurity controls, acceptance criteria, credential management, and any signing or attestation requirements remain <strong>TBD</strong> and shall be defined through the project’s cybersecurity design process.</p>
+<p>A station shall not deploy solely from a stale cached production pointer. Before starting a deployment, it shall confirm that the selected release remains approved and is not revoked. If current authorization state cannot be obtained, the default behavior shall be to keep the installed release rather than begin a new deployment. The project shall define any controlled exception needed for extended network outages.</p>
+<p>Revocation prevents subsequent deployment attempts. If revocation occurs after a deployment has begun, engineering personnel shall assess affected stations and direct rollback or other recovery when appropriate.</p>
+<p>A deployment attempt shall have a recorded outcome identifying the target release and the component versions actually running. If deployment or post-deployment checks fail, the station shall not resume normal observing until it has reached a qualified configuration or an explicitly authorized recovery state. Recovery may involve a rollback to the last known good release for the station.</p>
+</section>
+<section id="revocation-and-rollback" class="level2">
+<h2 class="anchored" data-anchor-id="revocation-and-rollback">Revocation and Rollback</h2>
+<p>Promotion, revocation, and rollback are separate operations:</p>
+<ul>
+<li><strong>Promotion</strong> advances a deployment channel to a newly qualified release.</li>
+<li><strong>Revocation</strong> declares that a release must not receive future deployments.</li>
+<li><strong>Rollback</strong> changes desired or installed state to a prior known-good release.</li>
+</ul>
+<p>If a production release is found to be defective after one or more stations deploy it, the incident response shall:</p>
+<ol type="1">
+<li>mark the affected release as revoked and record the reason and incident reference;</li>
+<li>move the production channel to the last known-good release;</li>
+<li>publish the updated channel and revocation state immediately;</li>
+<li>identify stations that downloaded, staged, or installed the revoked release;</li>
+<li>direct affected stations to roll back when rollback is safe;</li>
+<li>preserve the revoked release manifest, images, evidence, and deployment history;</li>
+<li>correct the affected component through its normal build pipeline; and</li>
+<li>compose and fully qualify a new SCS release.</li>
+</ol>
+<p>The revoked release shall not be deleted or modified. Its release notes or external status metadata may identify it as revoked, but its tag, manifest, and attached artifacts shall remain unchanged.</p>
+<p>For a GitHub-based implementation, immutable GitHub Releases may hold the release manifests. Mutable channel and revocation state should remain as version-controlled files or be published by a deployment service. An emergency rollback changes <code>channels/production.yaml</code> to the previous release and adds the defective release to the revocation record. The change is then committed, reviewed under the emergency procedure, merged, and published to stations. GitHub’s <code>latest</code> release indicator shall not be treated as the channel pointer.</p>
+<p>Rollback shall not be assumed to be safe for stateful components. Database migrations, persisted data formats, protocol state, and external controller configuration can prevent a simple return to old containers. Each stateful component shall declare one of the following for every release transition:</p>
+<ul>
+<li>rollback to the previous production release is supported;</li>
+<li>rollback requires restoration of identified state or data; or</li>
+<li>rollback is not supported and recovery requires a forward fix.</li>
+</ul>
+<p>Irreversible migrations require an approved recovery plan before promotion.</p>
+</section>
+<section id="retention-and-pruning" class="level2">
+<h2 class="anchored" data-anchor-id="retention-and-pruning">Retention and Pruning</h2>
+<p>Artifact pruning shall be based on reachability and operational need, not only artifact age.</p>
+<p>The retention process shall protect:</p>
+<ul>
+<li>every artifact referenced by a candidate, production, station-specific, or other active channel;</li>
+<li>every artifact referenced by an immutable release manifest retained under the project records policy;</li>
+<li>the release currently installed or staged at each station;</li>
+<li>at least the configured number of prior known-good releases needed for rollback;</li>
+<li>revoked releases and artifacts required for incident analysis; and</li>
+<li>artifacts subject to a legal, security, audit, or milestone hold.</li>
+</ul>
+<p>Unreferenced component candidates that never entered a release manifest may be deleted after a defined grace period. Temporary build products and CI logs may use shorter retention periods if they are not required to reproduce or audit a release. Registry garbage collection shall run only after the reachability calculation and grace period are complete.</p>
+<p>Temporary Maven artifacts published for pull-request integration shall use a distinct version pattern and retention policy. They may be removed after their source pull requests are closed and no open consumer pull request references them. Published Semantic Version releases shall not be overwritten or removed merely because they are no longer selected by current applications.</p>
+<p>Deleting a mutable tag does not necessarily delete image content, and deleting image content can break an old release even when its manifest remains. The pruning process shall therefore work from immutable digests and shall verify that no protected manifest or deployed station references an artifact before deletion.</p>
+<p>Retention durations, the rollback depth, and the treatment of milestone releases shall be defined in the project records and configuration-management policies. These values remain <strong>TBD</strong> until those policies are approved.</p>
+</section>
+<section id="traceability-and-audit-records" class="level2">
+<h2 class="anchored" data-anchor-id="traceability-and-audit-records">Traceability and Audit Records</h2>
+<p>The release process shall make it possible to determine:</p>
+<ul>
+<li>which source revisions produced each component artifact;</li>
+<li>which artifact digests formed each SCS release;</li>
+<li>which deployment configuration was applied;</li>
+<li>which tests qualified the release and their results;</li>
+<li>who or what promoted, revoked, or rolled back the release;</li>
+<li>which release each station installed and when; and</li>
+<li>whether deployment and post-deployment checks succeeded.</li>
+</ul>
+<p>Release, channel, test, and station-deployment records shall use stable identifiers so that records can be correlated across Git, CI, artifact registries, the deployment service, and observability systems.</p>
+</section>
+<section id="roles-and-responsibilities" class="level2">
+<h2 class="anchored" data-anchor-id="roles-and-responsibilities">Roles and Responsibilities</h2>
+<p>Specific organizational assignments remain <strong>TBD</strong>, but the following responsibilities shall be assigned:</p>
+<ul>
+<li><strong>Component maintainers</strong> maintain component CI, interface contracts, artifact metadata, and component rollback declarations.</li>
+<li><strong>Release automation</strong> composes and validates immutable SCS release manifests.</li>
+<li><strong>Test authority</strong> defines qualification criteria and accepts or rejects a release candidate.</li>
+<li><strong>Release authority</strong> approves production promotion and emergency channel changes.</li>
+<li><strong>Station operations</strong> control local deployment windows and respond to failed deployments.</li>
+<li><strong>Configuration management</strong> maintains release records, retention rules, and auditability.</li>
+</ul>
+<p>No single mutable tag or unrecorded runtime state shall be the only evidence of what was tested, approved, or deployed.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nggong\.github\.io\/docs\/pr\/25\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Draft post-v0.0.3 gc8b40dd</p>
+<p>© Copyright 2026 Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA).</p>
+<p>The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA), and funded under a cooperative agreement with the NSF.</p>
+<p>Except where otherwise noted, this documentation is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/nggong/docs/edit/feature/cdd-stubs/docs/hls/scs/release-and-deployment-management.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nggong/docs/blob/feature/cdd-stubs/docs/hls/scs/release-and-deployment-management.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
