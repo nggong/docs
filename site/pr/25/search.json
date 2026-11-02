@@ -1212,7 +1212,7 @@
     "href": "docs/design/software-conceptual-design.html#development-approach-and-path-to-pdr",
     "title": "Software Conceptual Design",
     "section": "12 Development Approach and Path to PDR",
-    "text": "12 Development Approach and Path to PDR\n\nDraft stub: This section will identify the design work needed to advance the software architecture from the Conceptual Design Review (CoDR) to the Preliminary Design Review (PDR).\n\nPlanned content includes:\n\nconceptual integration and verification approaches;\nmajor technical dependencies and unresolved design work;\nplanned analyses, prototypes, and other risk-reduction activities;\nrequired requirements allocation and design-compliance evidence; and\ntechnical inputs needed by cost, acquisition, operations, lifecycle, and disposition planning.\n\nDetailed development processes, verification procedures, schedules, cost estimates, acquisition plans, and operations or disposition plans will remain in their respective documents.\nThe final placement of Requirements Allocation and Design Compliance content is TBD. Until clarified, this section will reference the authoritative requirements hierarchy, allocation, compliance, and non-compliance records rather than duplicate them.",
+    "text": "12 Development Approach and Path to PDR\n\nDraft stub: This section will identify the design work needed to advance the software architecture from the Conceptual Design Review (CoDR) to the Preliminary Design Review (PDR).\n\nPlanned content includes:\n\nconceptual integration and verification approaches;\nmajor technical dependencies and unresolved design work;\nplanned analyses, prototypes, and other risk-reduction activities;\nrequired requirements allocation and design-compliance evidence; and\ntechnical inputs needed by cost, acquisition, operations, lifecycle, and disposition planning.\n\nDetailed development processes, verification procedures, schedules, cost estimates, acquisition plans, and operations or disposition plans will remain in their respective documents.",
     "crumbs": [
       "Design Documents",
       "Software Conceptual Design"
@@ -1234,7 +1234,7 @@
     "href": "docs/design/software-conceptual-design.html#ocs-requirements-allocation",
     "title": "Software Conceptual Design",
     "section": "13 OCS Requirements Allocation",
-    "text": "13 OCS Requirements Allocation",
+    "text": "13 OCS Requirements Allocation\n\nDraft stub: This section will summarize requirements allocation and design compliance for the Observatory Control System (OCS).\n\nPlanned content includes:\n\nreferences to the authoritative science and system requirements hierarchy and applicable High Level Software (HLS) Design Requirements Document (DRD);\nmapping of applicable requirement identifiers to major OCS design elements, consistent with the project’s Spicy SE traceability;\nallocation of shared-interface responsibilities and applicable interoperability requirements;\nsupporting design evidence and proposed verification approaches; and\nidentified non-compliances, unresolved allocations, and planned resolutions.\n\nThis section will reference controlled allocation and compliance records rather than duplicate the requirements catalog. Assumptions and proposed allocations will be distinguished from established requirements.\nTBD: Identify the authoritative records, applicable requirements, design mappings, and compliance status.",
     "crumbs": [
       "Design Documents",
       "Software Conceptual Design"
@@ -1245,7 +1245,7 @@
     "href": "docs/design/software-conceptual-design.html#scs-requirements-allocation",
     "title": "Software Conceptual Design",
     "section": "14 SCS Requirements Allocation",
-    "text": "14 SCS Requirements Allocation",
+    "text": "14 SCS Requirements Allocation\n\nDraft stub: This section will summarize requirements allocation and design compliance for the Station Control System (SCS).\n\nPlanned content includes:\n\nreferences to the authoritative science and system requirements hierarchy and applicable HLS DRD;\nmapping of applicable requirement identifiers to major SCS design elements, consistent with the project’s Spicy SE traceability;\nallocation of responsibilities at station control, instrument, safety, and data-management interfaces, including applicable interoperability requirements;\nsupporting design evidence and proposed verification approaches; and\nidentified non-compliances, unresolved allocations, and planned resolutions.\n\nThis section will reference controlled allocation and compliance records rather than duplicate the requirements catalog. Assumptions and proposed allocations will be distinguished from established requirements.\nTBD: Identify the authoritative records, applicable requirements, design mappings, and compliance status.",
     "crumbs": [
       "Design Documents",
       "Software Conceptual Design"
@@ -1256,7 +1256,7 @@
     "href": "docs/design/software-conceptual-design.html#dms-requirements-allocation",
     "title": "Software Conceptual Design",
     "section": "15 DMS Requirements Allocation",
-    "text": "15 DMS Requirements Allocation",
+    "text": "15 DMS Requirements Allocation\n\nDraft stub: This section will summarize requirements allocation and design compliance for the Data Management System (DMS).\n\nPlanned content includes:\n\nreferences to the authoritative science and system requirements hierarchy and DMS DRD;\nmapping of applicable requirement identifiers to major DMS design elements, consistent with the project’s Spicy SE traceability;\ncoverage of ingest, processing where allocated, metadata, storage, preservation, discovery, and access;\nallocation of shared-interface responsibilities and applicable interoperability requirements, particularly at the HLS and Controls boundary;\nsupporting design evidence and proposed verification approaches; and\nidentified non-compliances, unresolved allocations, and planned resolutions.\n\nThis section will reference controlled allocation and compliance records rather than duplicate the requirements catalog. Assumptions and proposed allocations will be distinguished from established requirements.\nTBD: Identify the authoritative records, applicable requirements, design mappings, and compliance status.",
     "crumbs": [
       "Design Documents",
       "Software Conceptual Design"
@@ -1267,7 +1267,7 @@
     "href": "docs/design/software-conceptual-design.html#sis-requirements-allocation",
     "title": "Software Conceptual Design",
     "section": "16 SIS Requirements Allocation",
-    "text": "16 SIS Requirements Allocation",
+    "text": "16 SIS Requirements Allocation\n\nDraft stub: This section will summarize requirements allocation and design compliance for the Safety Interlock System (SIS).\n\nPlanned content includes:\n\nreferences to the authoritative science and system requirements hierarchy, SIS DRD, hazard analysis, and cause-and-effect matrix;\nmapping of applicable requirement identifiers and allocated safety functions to major SIS design elements, consistent with the project’s Spicy SE traceability;\nsupporting design evidence for safety authority, independence, fault response, and interfaces with HLS and protected equipment;\nallocation of shared-interface responsibilities and applicable interoperability requirements;\nproposed verification approaches; and\nidentified non-compliances, unresolved allocations, and planned resolutions.\n\nThis section will reference controlled allocation and compliance records rather than duplicate the requirements catalog or safety analyses. Assumptions and proposed allocations will be distinguished from established requirements.\nTBD: Identify the authoritative records, applicable requirements, design mappings, and compliance status.",
     "crumbs": [
       "Design Documents",
       "Software Conceptual Design"
@@ -1279,6 +1279,17 @@
     "title": "Software Conceptual Design",
     "section": "Architecture Design Summary",
     "text": "Architecture Design Summary",
+    "crumbs": [
+      "Design Documents",
+      "Software Conceptual Design"
+    ]
+  },
+  {
+    "objectID": "docs/design/software-conceptual-design.html#architectural-design-summary",
+    "href": "docs/design/software-conceptual-design.html#architectural-design-summary",
+    "title": "Software Conceptual Design",
+    "section": "17 Architectural Design Summary",
+    "text": "17 Architectural Design Summary\n\nDraft stub: This section will provide concise summaries of key architectural trade studies and decisions for HLS and Controls and DMS.\n\nEach summary is expected to occupy approximately one or two pages and identify:\n\nthe architectural question and alternatives considered;\nthe selection criteria and supporting rationale;\nthe decision status, including whether a choice is proposed or established;\nthe consequences, assumptions, and unresolved issues; and\nreferences to detailed trade studies, analyses, and supporting design evidence.\n\nThe summaries will complement the Major Design Decisions and Feasibility Evidence section and reference detailed material rather than duplicate it.\nTBD: Identify the decisions and trade studies to summarize and add references to their authoritative records.",
     "crumbs": [
       "Design Documents",
       "Software Conceptual Design"
