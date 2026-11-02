@@ -16,8 +16,3 @@ Planned content includes:
 Detailed development processes, verification procedures, schedules, cost
 estimates, acquisition plans, and operations or disposition plans will remain
 in their respective documents.
-
-The final placement of Requirements Allocation and Design Compliance content is
-TBD. Until clarified, this section will reference the authoritative
-requirements hierarchy, allocation, compliance, and non-compliance records rather
-than duplicate them.

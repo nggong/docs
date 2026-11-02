@@ -51,10 +51,13 @@ format:
 ## Requirements Allocation {.unnumbered}
 :::
 
-## OCS Requirements Allocation
-## SCS Requirements Allocation
-## DMS Requirements Allocation
-## SIS Requirements Allocation
+{{< include _conceptual/ocs-requirements-allocation.md >}}
+
+{{< include _conceptual/scs-requirements-allocation.md >}}
+
+{{< include _conceptual/dms-requirements-allocation.md >}}
+
+{{< include _conceptual/sis-requirements-allocation.md >}}
 
 ::: {.content-visible when-format="pdf"}
 ```{=latex}
@@ -65,4 +68,4 @@ format:
 ## Architecture Design Summary {.unnumbered}
 :::
 
-
+{{< include _conceptual/architectural-design-summary.md >}}
