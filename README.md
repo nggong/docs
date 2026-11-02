@@ -16,6 +16,7 @@ make preview
 ```
 
 Then open http://localhost:4848/.
+If that port is in use, run `make PREVIEW_PORT=4849 preview` and open http://localhost:4849/.
 The preview footer displays `PREVIEW` instead of a Git-derived version.
 
 ## Local Dependencies

@@ -3,6 +3,7 @@ DOCS_IMAGE ?= nggong-docs-quarto:local
 VALE_IMAGE ?= jdkato/vale:v3.17.0
 QUARTO_HOME := .quarto-home
 PDF_OUTPUT_DIR := _pdf
+PREVIEW_PORT ?= 4848
 # Preview settings must apply to both renders; --profile replaces QUARTO_PROFILE.
 HTML_PROFILE := website
 PDF_PROFILE := pdf
@@ -55,7 +56,7 @@ preview: image version
 	docker run --rm -it \
 		--user "$$(id -u):$$(id -g)" \
 		--env HOME=/project/$(QUARTO_HOME) \
-		--publish 4848:4848 \
+		--publish $(PREVIEW_PORT):4848 \
 		--volume "$(CURDIR):/project" \
 		--workdir /project \
 		$(DOCS_IMAGE) quarto preview --host 0.0.0.0 --port 4848 \

@@ -120,6 +120,19 @@ whether a PDF artifact should be generated in addition to the html/webpage.
 
 ## Working Style
 
+- For preview checks, first probe `http://localhost:4848/` and identify the serving Docker container and its `/project` bind mount.
+  Reuse a running preview only when that mount matches the current worktree; a preview from another worktree can show stale content.
+- If no preview for this worktree is running, start `make PREVIEW_PORT=4849 preview` (or another free port) in a session
+  that Codex can inspect. Check the server output and rendered page for build errors.
+  Stop only a preview that Codex started; do not stop a user-owned preview to free a port.
+- When a live preview is not needed, a direct Docker render is also suitable for build validation.
+- The following local preview commands are authorized as routine work; do not ask for separate user consent before using them:
+  - `curl` against `localhost` or `127.0.0.1` on a preview port, to check HTTP status or inspect rendered pages and assets.
+  - `docker ps` to find preview containers, and `docker inspect <container-id>` to check their port mappings and `/project` mounts.
+  - `docker logs <container-id>` to read Quarto output from a preview container.
+  - `make preview` or `make PREVIEW_PORT=<free-port> preview` to start a preview for the current worktree.
+  - Stop a preview process or container only if Codex started it in the current task.
+  These instructions do not bypass sandbox permissions; request tool escalation when the sandbox requires it.
 - Ask questions before starting substantial documentation or repository
   structure work.
 - If the requested approach seems likely to create churn, suggest a better
