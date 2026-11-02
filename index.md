@@ -15,4 +15,7 @@ to others, especially reviewers.
   ngGONG will do software development.
   - [SCS Release and Deployment Management](docs/hls/scs/release-and-deployment-management.md) - A
   detailed look at how the Station Control System specifically will do release and deployment management.
+- Design Documents
+  - [Software Conceptual Design](docs/design/software-conceptual-design.qmd)
+  - [Design Overview](docs/design/overview.md)
 - [Developer Guides](docs/developer-guides/index.md) - Guides and how-tos for developers

@@ -5,6 +5,7 @@ project:
   output-dir: _pdf
   render:
     - docs/software-development-plan.qmd
+    - docs/design/software-conceptual-design.qmd
 
 author: "ngGONG Software Team"
 subtitle: "Next-Generation Ground-based Solar Observing Network"

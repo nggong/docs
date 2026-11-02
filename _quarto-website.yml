@@ -27,6 +27,9 @@ website:
           - section: Release and Deployment
             contents:
               - docs/hls/scs/release-and-deployment-management.md
+      - section: Design Documents
+        contents:
+          - docs/design/software-conceptual-design.qmd
       - section: docs/developer-guides/index.md
         contents:
           - section: How-Tos
