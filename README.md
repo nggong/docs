@@ -92,6 +92,13 @@ Remove generated documents and the local container-side Quarto cache:
 make distclean
 ```
 
+## Pull Requests
+
+The [documentation review charge template](.github/PULL_REQUEST_TEMPLATE.md)
+is the default for pull requests in this repository.
+GitHub fills the pull request body with the template, replacing any description it would have derived from the commit message.
+Include useful commit message context in the template's **Context** section.
+
 ## Automated Pull Request Review
 
 The AI review workflow uses the official Codex GitHub Action to review pull
