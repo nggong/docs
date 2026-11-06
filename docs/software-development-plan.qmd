@@ -554,24 +554,149 @@ project-level handling.
 Recurring or systemic defects should be treated as evidence that requirements,
 design, tests, tooling, or operational procedures may need improvement.
 
-## Cybersecurity Coordination
+## Cybersecurity in Software Development
 
-- Cybersecurity requirements, controls, assessment expectations, and
-  incident-response procedures are defined through project-level cybersecurity
-  or systems engineering processes, not by this Software Development Plan.
-- Software teams coordinate with the project cybersecurity owner to apply
-  applicable requirements to repositories, dependencies, continuous integration
-  and deployment mechanisms, credentials, network interfaces, logging, and
-  operational software.
-- Software designs and releases identify security-relevant assumptions or
-  dependencies where they affect architecture, interfaces, deployment, or
-  operations.
-- Cybersecurity findings that require software changes are tracked through the
-  selected software issue-tracking process, with escalation to project-level
-  risk management or change control when warranted.
-- Detailed security control selection, threat analysis, authorization,
-  vulnerability management policy, and incident-response procedures are owned by
-  the responsible cybersecurity lead or team.
+ngGONG software development shall follow applicable National Solar Observatory
+(NSO) cybersecurity policies and the controls allocated through the approved
+ngGONG Cybersecurity Implementation Plan and Cybersecurity Control Allocation
+Plan.
+The project approach uses the Trusted CI Framework and Center for Internet
+Security (CIS) Controls v8.1.
+The allocation plan identifies inherited, shared, project, and supplier
+responsibilities, applicability decisions, and approved exceptions.
+Applicable National Science Foundation guidance and award obligations are
+addressed through project cybersecurity governance.
+
+### Allocation and Documentation
+
+This section defines the common software development practices needed to
+implement allocated cybersecurity controls within the scope of this SDP.
+It supplements the general practices in [Coding Standards and Review
+Practices](#coding-standards-and-review-practices), [Build, Integration, and
+Continuous Integration](#build-integration-and-continuous-integration), and
+[Release and Deployment Management](#release-and-deployment-management).
+
+Product security behavior shall be specified in the applicable DRDs and
+interface definitions.
+Architecture and design documents shall describe the trust boundaries,
+identities, authorization, privileged and remote access, credential handling,
+security events, and recovery mechanisms that implement those requirements.
+Verification plans and test procedures shall define the methods, acceptance
+criteria, and evidence for verifying the allocated product requirements.
+Software leads shall ensure that cybersecurity responsibilities allocated to
+their teams are traceable to the applicable requirements, designs, development
+practices, and verification evidence.
+Shared infrastructure and enterprise controls shall retain their assigned
+owners.
+
+Developer guides and repository documentation shall describe how developers
+perform the practices defined here, including review steps, required checks,
+credential handling, finding disposition, and evidence retention.
+The current developer guides cover commit signing and parts of package
+publishing and credential handling; they do not yet provide a complete secure
+development procedure.
+Detailed tools and repository procedures remain to be defined as implementation
+technologies are selected.
+Software leads shall ensure that the applicable procedures are documented before
+they are used for controlled software delivery.
+
+### Development and Security Review
+
+Changes that affect authentication, authorization, credentials, trust
+boundaries, externally accessible interfaces, or build and release controls
+shall receive a documented security review.
+Changes that affect incident isolation or safety protection shall also receive
+this review.
+The responsible software lead shall designate a reviewer with relevant
+expertise who is independent of the change author.
+The security review may form part of the normal code or design review.
+It shall assess the effect on allocated security requirements, access and
+privilege boundaries, protected information, and failure and recovery behavior,
+as applicable to the change.
+The review record shall identify the reviewer, findings, their disposition, and
+any required verification.
+The lead shall involve NSO cybersecurity when a change affects shared controls,
+requires policy interpretation, or needs an exception.
+
+Repositories, build systems, and release mechanisms shall protect privileged
+access and credentials.
+Software teams shall keep secrets out of source code, ordinary configuration,
+logs, and release artifacts, and use credential mechanisms consistent with
+applicable NSO policies.
+Teams shall maintain dependency information and check third-party software and
+dependencies for known vulnerabilities.
+Required security checks, their execution points, and their results shall be
+identified in repository documentation and build or review records.
+
+### Build and Release Security
+
+Continuous integration and verification plans shall include security checks
+appropriate to the product, its risks, and its allocated controls.
+Security verification shall test permitted and denied behavior where access
+controls are allocated, together with applicable trust boundaries, credential
+handling, audit events, and recovery behavior.
+Assessment of controllers, safety equipment, and other specialized systems shall
+be coordinated with their owners and NSO IT to protect observing and safety
+functions.
+
+Operational releases shall be traceable to source revisions, build records,
+dependency versions, and configuration revisions.
+Software and dependency inventories may be provided through a Software Bill of
+Materials (SBOM), build metadata, or equivalent controlled records.
+Release records shall reference this evidence and any required artifact
+provenance.
+The evidence may be retained with component artifacts and linked from a system
+release manifest.
+
+Release qualification shall evaluate required security tests, vulnerability
+findings, and artifact integrity and provenance against approved acceptance
+criteria.
+A release that fails those criteria shall not be promoted without an approved
+exception.
+Subsystem release and deployment plans shall define how these checks and records
+fit into component builds, system qualification, promotion, deployment, and
+recovery.
+Security acceptance criteria and release gates remain to be agreed through
+project and NSO cybersecurity governance before operational release
+qualification.
+
+::: {.content-visible when-format="html"}
+For the SCS, see the release plan's
+[Artifact Management](hls/scs/release-and-deployment-management.md#artifact-management),
+[Release Manifest Contents](hls/scs/release-and-deployment-management.md#release-manifest-contents),
+and [Qualification and Promotion](hls/scs/release-and-deployment-management.md#qualification-and-promotion) sections.
+:::
+
+::: {.content-visible when-format="pdf"}
+For the SCS, see the release plan's
+[Artifact Management]({{< meta published-site-url >}}/docs/hls/scs/release-and-deployment-management.html#artifact-management),
+[Release Manifest Contents]({{< meta published-site-url >}}/docs/hls/scs/release-and-deployment-management.html#release-manifest-contents),
+and [Qualification and Promotion][scs-qualify] sections.
+
+[scs-qualify]: {{< meta published-site-url >}}/docs/hls/scs/release-and-deployment-management.html#qualification-and-promotion
+:::
+
+### Findings and Operational Support
+
+Software security findings shall be recorded through the software issue-tracking
+process with an affected asset or version, an accountable owner, severity and
+impact, and disposition.
+Teams shall verify remediation in the affected software or deployed
+configuration.
+Remediation time frames shall follow criteria approved through project and NSO
+cybersecurity governance; software-specific time frames remain to be defined.
+Exceptions to binding controls shall use the applicable NSO approval process and
+be linked to affected requirements, configuration, and risk records.
+
+Software and maintenance plans shall address security updates, credential
+changes, relevant audit events, incident evidence, controlled isolation, and
+restoration from approved software and configuration.
+These activities shall preserve independent Safety Interlock System (SIS)
+protection and defined station-local safe or degraded behavior during loss or
+isolation of central services.
+The NSO incident-response process governs cybersecurity incidents.
+Project and subsystem procedures shall define the software actions,
+responsibilities, and verification evidence needed to support that process.
 
 ## Transition to Operations and Software Maintenance
 
