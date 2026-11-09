@@ -72,6 +72,13 @@ whether a PDF artifact should be generated in addition to the html/webpage.
 - Prefer splitting lines at the end of sentences to make file diffs more useful
   but keep in mind a soft 120 character wrap and a hard 140 character wrap.
 
+## File Purpose, Audience, and Style
+
+Before creating or editing files, read and follow
+[Purpose, Audience, and Style](docs/developer-guides/authors-guide.md#purpose-audience-and-style)
+in the Author's Guide. That section is the shared source for this guidance for
+human contributors and AI agents.
+
 ## Review Rules
 
 ### General Scope and Significance

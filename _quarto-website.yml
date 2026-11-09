@@ -32,6 +32,7 @@ website:
           - docs/design/software-conceptual-design.qmd
       - section: docs/developer-guides/index.md
         contents:
+          - docs/developer-guides/authors-guide.md
           - section: How-Tos
             contents:
               - docs/developer-guides/acli.md
