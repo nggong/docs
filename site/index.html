@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ea61ebfe3ebd6c590f168e30b043f908.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ee93c9f0d2205475d7b02916a53900b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -170,6 +170,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/developer-guides/authors-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Author’s Guide</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
@@ -242,7 +248,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
-  <li><a href="#documentation-sets" id="toc-documentation-sets" class="nav-link" data-scroll-target="#documentation-sets">Documentation Sets</a></li>
+  <li><a href="#document-relationships-and-source-authority" id="toc-document-relationships-and-source-authority" class="nav-link" data-scroll-target="#document-relationships-and-source-authority">Document Relationships and Source Authority</a>
+  <ul class="collapse">
+  <li><a href="#external-project-documents" id="toc-external-project-documents" class="nav-link" data-scroll-target="#external-project-documents">External Project Documents</a></li>
+  <li><a href="#documents-in-this-repository" id="toc-documents-in-this-repository" class="nav-link" data-scroll-target="#documents-in-this-repository">Documents in This Repository</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/nggong/docs/edit/main/index.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/nggong/docs/blob/main/index.md" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -253,26 +263,71 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<!--
+Purpose: Introduce this repository at a high level and explain what documentation is present and what each document is for.
+It also describes how the document set relates to external project documents.
+Audience: This page is intended for project developers, reviewers, and other readers seeking an overview of the documentation.
+Style: Informational and descriptive. Use plain language to explain the document set and help readers navigate it.
+-->
 <section id="overview" class="level1">
 <h1>Overview</h1>
 <p><a href="https://nso.edu/telescopes/nggong">The Next-Generation Ground-based Solar Observatory Network</a> is a geographically distributed network of six solar observing stations designed to provide continuous observations of the Sun. Each station operates largely autonomously, while High Level Software, Controls, and Data Management work together to operate the telescopes, monitor the network, acquire observations, and deliver data for fundamental science and space weather.</p>
 <p>This website (and backing github repository) contains the ngGONG software documentation. The primary audience for this documentation is developers of ngGONG software but it may be relevant to others, especially reviewers.</p>
-<section id="documentation-sets" class="level2">
-<h2 class="anchored" data-anchor-id="documentation-sets">Documentation Sets</h2>
+<p>For guidance on writing and updating this documentation, see the <a href="./docs/developer-guides/authors-guide.html">Author’s Guide</a>.</p>
+<section id="document-relationships-and-source-authority" class="level2">
+<h2 class="anchored" data-anchor-id="document-relationships-and-source-authority">Document Relationships and Source Authority</h2>
+<p>This section is the shared reference for how documents in this repository relate to each other and to external ngGONG project documents. Authority depends on the scope, allocation, and approval status of a source, not on whether it is stored in this repository. Approved requirements, allocations, and interface contracts constrain the design and operational details in this repository. Draft or proposed content does not by itself indicate project approval.</p>
+<section id="external-project-documents" class="level3">
+<h3 class="anchored" data-anchor-id="external-project-documents">External Project Documents</h3>
+<p>The following document types provide requirements, constraints, and operational context for the software documentation.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Document</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Operational Concepts Document (OCD)</td>
+<td>Observatory operational intent, scenarios, and nominal and off-nominal behavior.</td>
+</tr>
+<tr class="even">
+<td>Operational Architecture Document (OAD)</td>
+<td>System responsibilities, functional allocations, boundaries, and interfaces.</td>
+</tr>
+<tr class="odd">
+<td>Science Requirements Document (SRD)</td>
+<td>Science drivers, performance requirements, and science-data-product requirements.</td>
+</tr>
+<tr class="even">
+<td>Design Requirements Documents (DRDs)</td>
+<td>Requirements allocated to individual systems, including software and controls.</td>
+</tr>
+<tr class="odd">
+<td>Interface Control Documents (ICDs)</td>
+<td>Contracts between systems or components.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="documents-in-this-repository" class="level3">
+<h3 class="anchored" data-anchor-id="documents-in-this-repository">Documents in This Repository</h3>
+<p>The documents in this repository develop different parts of the software definition:</p>
 <ul>
-<li><a href="./docs/software-development-plan.html">Software Development Plan</a> - The guiding document for how ngGONG will do software development.
-<ul>
-<li><a href="./docs/hls/scs/release-and-deployment-management.html">SCS Release and Deployment Management</a> - A detailed look at how the Station Control System specifically will do release and deployment management.</li>
-</ul></li>
-<li>Design Documents
-<ul>
-<li><a href="./docs/design/software-conceptual-design.html">Software Conceptual Design</a></li>
-<li><a href="docs/design/overview.md">Design Overview</a></li>
-</ul></li>
-<li><a href="./docs/developer-guides/index.html">Developer Guides</a> - Guides and how-tos for developers</li>
+<li>The <strong>Software Development Plan</strong> defines the software development, verification, and maintenance approach.</li>
+<li>The <strong>Software Design Description</strong> develops software responsibilities, boundaries, interactions, and design decisions consistent with the applicable requirements and system allocations.</li>
+<li>Various <strong>Interface Control Documents (ICDs)</strong> describing the interface between different elements of the Software.</li>
+<li><strong>Supporting specifications and guides</strong>, including release and deployment guidance, develop details within their stated scope and remain consistent with the applicable requirements, design, and development plan.</li>
 </ul>
+<p>Upstream documents are not expected to contain every detail needed for design, implementation, operation, or verification. Repository documents provide agreed details within their allocated scope that need not first appear in an upstream document. For example, the SCS-OPWS supplies policy and workflow detail that requirements and conceptual design leave open. Those requirements and allocations continue to govern the resulting details. Proposed content and items marked <strong>TBD</strong> represent decisions that are not yet settled.</p>
 
 
+</section>
 </section>
 </section>
 
@@ -684,7 +739,7 @@ ul.task-list li input[type="checkbox"] {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Draft post-v0.0.3 g9fd44a4</p>
+<p>Draft post-v0.0.3 gfda8b66</p>
 <p>© Copyright 2026 Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA).</p>
 <p>The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA), and funded under a cooperative agreement with the NSF.</p>
 <p>Except where otherwise noted, this documentation is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>

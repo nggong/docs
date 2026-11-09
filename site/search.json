@@ -350,7 +350,7 @@
     "href": "docs/developer-guides/index.html",
     "title": "Developer Guides",
     "section": "",
-    "text": "These guides provide practical instructions for tools and workflows used by ngGONG software developers. They describe recommended practices unless a guide identifies a project requirement.\n\n\n\nInstall and Use Atlassian CLI\nInstall Docker for Documentation Preview\nSet Up Git Commit Signing\nGet GitHub Notifications in Slack\n\n\n\n\nDeveloper Workflow for Cross-Repository Library Changes\nGitHub Automation for Cross-Repository Library Changes\n\n\n\n\n\nIf a guide does not work in your environment, investigate the problem and correct the guide. You can use Codex or a similar development tool to help diagnose the problem and prepare the change. Verify the corrected instructions in your environment, then submit a pull request with the fix.",
+    "text": "These guides provide practical instructions for tools and workflows used by ngGONG software developers. They describe recommended practices unless a guide identifies a project requirement.\n\n\n\nAuthor’s Guide\nInstall and Use Atlassian CLI\nInstall Docker for Documentation Preview\nSet Up Git Commit Signing\nGet GitHub Notifications in Slack\n\n\n\n\nDeveloper Workflow for Cross-Repository Library Changes\nGitHub Automation for Cross-Repository Library Changes\n\n\n\n\n\nIf a guide does not work in your environment, investigate the problem and correct the guide. You can use Codex or a similar development tool to help diagnose the problem and prepare the change. Verify the corrected instructions in your environment, then submit a pull request with the fix.",
     "crumbs": [
       "Developer Guides"
     ]
@@ -360,7 +360,7 @@
     "href": "docs/developer-guides/index.html#guides",
     "title": "Developer Guides",
     "section": "",
-    "text": "Install and Use Atlassian CLI\nInstall Docker for Documentation Preview\nSet Up Git Commit Signing\nGet GitHub Notifications in Slack\n\n\n\n\nDeveloper Workflow for Cross-Repository Library Changes\nGitHub Automation for Cross-Repository Library Changes",
+    "text": "Author’s Guide\nInstall and Use Atlassian CLI\nInstall Docker for Documentation Preview\nSet Up Git Commit Signing\nGet GitHub Notifications in Slack\n\n\n\n\nDeveloper Workflow for Cross-Repository Library Changes\nGitHub Automation for Cross-Repository Library Changes",
     "crumbs": [
       "Developer Guides"
     ]
@@ -520,6 +520,66 @@
     ]
   },
   {
+    "objectID": "docs/developer-guides/authors-guide.html",
+    "href": "docs/developer-guides/authors-guide.html",
+    "title": "Author’s Guide",
+    "section": "",
+    "text": "This guide helps contributors write and update ngGONG documentation for its intended readers. The guidance also applies to AI agents assisting with those changes.\n\n\nBefore writing or revising a document, establish three things:\n\nDefine the document’s purpose: What is it for, and what does it cover?\nIdentify the audience: Who needs it, and what do they need from it?\nChoose the writing style: How should the content be presented to serve that purpose and audience?\n\nDocumentation may be edited by people and AI agents who do not share the original author’s context. A purpose, audience, and style (PAS) comment block records the document’s intended role so contributors and reviewers can judge whether a change belongs and how to present it. Keeping this context in the source helps preserve that intent across edits without adding authoring guidance to the published document. Keeping authoring guidance separate reduces distractions for readers. Selected information about purpose, audience, or style may still be useful in the published document when it helps readers understand or use the content. In those cases include both a comment block with the information and the relevant information in the published content.\n\n\nIdentify what the document explains, specifies, or helps readers do. State its scope and the outcome it should support for readers. For an existing document, confirm its intended role before deciding whether new content belongs in it. If its purpose is unclear, discuss it before choosing a new scope.\n\n\n\nIdentify the primary readers and what they need from the document. Include secondary audiences when their needs affect its content or presentation. Potential audiences include:\n\nReviewers: Assess the design, requirements coverage, or project approach.\nProject developers: Implement, test, or maintain software.\nOperations and maintenance personnel: Understand station behavior and operational procedures.\nDocumentation contributors: Create and maintain the document set.\nAI agents: Perform tasks using the document’s information or guidance.\n\nThese are examples rather than fixed categories. Describe the readers the document serves rather than listing every possible audience.\n\n\n\nStyle depends on what the document does, not just how formal it looks. Use the following patterns as a starting point and describe the approach that fits the particular documentation source.\n\n\n\n\n\n\n\n\nDocument role\nTypical examples\nWriting approach\n\n\n\n\nInformational overview\nRepository index\nPlain, descriptive prose that explains and directs readers.\n\n\nDesign description\nConceptual design\nPrecise technical explanation of structure, decisions, rationale, and open questions.\n\n\nSpecification or plan\nPolicy specification, development plan\nPrecise rules or commitments; normative language for obligations.\n\n\nInstructional guide\nDeveloper how-to\nDirect steps, commands, examples, and explanations.\n\n\n\nInformative content explains; normative content establishes obligations. A document may contain both, so its style description can identify where each applies. For example, a specification can contain mandatory rules alongside descriptive context and rationale.\nUse “shall” for mandatory rules or commitments. Keep context and rationale descriptive, including in formal documents. An informational overview does not need normative language to explain the document set.\n\n\n\nRecord the purpose, audience, and style in a comment at the top of the documentation source. PAS comments apply only to Markdown (.md) and Quarto (.qmd) sources that form the document set, including landing pages, guides, formal documents, and included document sections. Configuration files such as _quarto-website.yml, scripts, build files, templates, and agent instruction files are outside this scope, even when a support file uses Markdown.\nBefore editing a documentation source, read its purpose comment and keep changes consistent with the stated purpose, audience, and style. An intentional change to that scope also needs a matching update to the comment. If the purpose or audience is unclear, discuss it before choosing a new scope.\nWhen creating a documentation source covered by this guidance, add a purpose comment. When updating one that lacks a comment, add a comment that reflects its existing purpose, audience, and style. If a comment already describes purpose and audience but lacks style guidance, add the style description.\nUse these three labels:\n\nPurpose: One or two sentences explaining what the documentation source contains and what it is for.\nAudience: One sentence identifying its intended readers, such as reviewers, project developers, or AI agents. These are examples rather than a fixed list of audiences.\nStyle: A short description of the expected writing approach and whether the content is informative, normative, or a mixture.\n\nUse an HTML comment for Markdown and Quarto documents, as in this example:\n&lt;!--\nPurpose: Explain how to preview repository documentation locally.\nAudience: This guide is intended for project developers and documentation contributors.\nStyle: Instructional and direct. Use short steps, commands, and examples.\n--&gt;\nIf a documentation source has leading YAML metadata, keep that metadata first and place the purpose comment immediately after it.\n\n\n\n\nUse the documentation preview guide to set up and run a local preview. Check the rendered page as well as the source, especially after changing links, headings, tables, or navigation.",
+    "crumbs": [
+      "Developer Guides",
+      "Author's Guide"
+    ]
+  },
+  {
+    "objectID": "docs/developer-guides/authors-guide.html#purpose-audience-and-style",
+    "href": "docs/developer-guides/authors-guide.html#purpose-audience-and-style",
+    "title": "Author’s Guide",
+    "section": "",
+    "text": "Before writing or revising a document, establish three things:\n\nDefine the document’s purpose: What is it for, and what does it cover?\nIdentify the audience: Who needs it, and what do they need from it?\nChoose the writing style: How should the content be presented to serve that purpose and audience?\n\nDocumentation may be edited by people and AI agents who do not share the original author’s context. A purpose, audience, and style (PAS) comment block records the document’s intended role so contributors and reviewers can judge whether a change belongs and how to present it. Keeping this context in the source helps preserve that intent across edits without adding authoring guidance to the published document. Keeping authoring guidance separate reduces distractions for readers. Selected information about purpose, audience, or style may still be useful in the published document when it helps readers understand or use the content. In those cases include both a comment block with the information and the relevant information in the published content.\n\n\nIdentify what the document explains, specifies, or helps readers do. State its scope and the outcome it should support for readers. For an existing document, confirm its intended role before deciding whether new content belongs in it. If its purpose is unclear, discuss it before choosing a new scope.\n\n\n\nIdentify the primary readers and what they need from the document. Include secondary audiences when their needs affect its content or presentation. Potential audiences include:\n\nReviewers: Assess the design, requirements coverage, or project approach.\nProject developers: Implement, test, or maintain software.\nOperations and maintenance personnel: Understand station behavior and operational procedures.\nDocumentation contributors: Create and maintain the document set.\nAI agents: Perform tasks using the document’s information or guidance.\n\nThese are examples rather than fixed categories. Describe the readers the document serves rather than listing every possible audience.\n\n\n\nStyle depends on what the document does, not just how formal it looks. Use the following patterns as a starting point and describe the approach that fits the particular documentation source.\n\n\n\n\n\n\n\n\nDocument role\nTypical examples\nWriting approach\n\n\n\n\nInformational overview\nRepository index\nPlain, descriptive prose that explains and directs readers.\n\n\nDesign description\nConceptual design\nPrecise technical explanation of structure, decisions, rationale, and open questions.\n\n\nSpecification or plan\nPolicy specification, development plan\nPrecise rules or commitments; normative language for obligations.\n\n\nInstructional guide\nDeveloper how-to\nDirect steps, commands, examples, and explanations.\n\n\n\nInformative content explains; normative content establishes obligations. A document may contain both, so its style description can identify where each applies. For example, a specification can contain mandatory rules alongside descriptive context and rationale.\nUse “shall” for mandatory rules or commitments. Keep context and rationale descriptive, including in formal documents. An informational overview does not need normative language to explain the document set.\n\n\n\nRecord the purpose, audience, and style in a comment at the top of the documentation source. PAS comments apply only to Markdown (.md) and Quarto (.qmd) sources that form the document set, including landing pages, guides, formal documents, and included document sections. Configuration files such as _quarto-website.yml, scripts, build files, templates, and agent instruction files are outside this scope, even when a support file uses Markdown.\nBefore editing a documentation source, read its purpose comment and keep changes consistent with the stated purpose, audience, and style. An intentional change to that scope also needs a matching update to the comment. If the purpose or audience is unclear, discuss it before choosing a new scope.\nWhen creating a documentation source covered by this guidance, add a purpose comment. When updating one that lacks a comment, add a comment that reflects its existing purpose, audience, and style. If a comment already describes purpose and audience but lacks style guidance, add the style description.\nUse these three labels:\n\nPurpose: One or two sentences explaining what the documentation source contains and what it is for.\nAudience: One sentence identifying its intended readers, such as reviewers, project developers, or AI agents. These are examples rather than a fixed list of audiences.\nStyle: A short description of the expected writing approach and whether the content is informative, normative, or a mixture.\n\nUse an HTML comment for Markdown and Quarto documents, as in this example:\n&lt;!--\nPurpose: Explain how to preview repository documentation locally.\nAudience: This guide is intended for project developers and documentation contributors.\nStyle: Instructional and direct. Use short steps, commands, and examples.\n--&gt;\nIf a documentation source has leading YAML metadata, keep that metadata first and place the purpose comment immediately after it.",
+    "crumbs": [
+      "Developer Guides",
+      "Author's Guide"
+    ]
+  },
+  {
+    "objectID": "docs/developer-guides/authors-guide.html#preview-changes",
+    "href": "docs/developer-guides/authors-guide.html#preview-changes",
+    "title": "Author’s Guide",
+    "section": "",
+    "text": "Use the documentation preview guide to set up and run a local preview. Check the rendered page as well as the source, especially after changing links, headings, tables, or navigation.",
+    "crumbs": [
+      "Developer Guides",
+      "Author's Guide"
+    ]
+  },
+  {
+    "objectID": "docs/design/index.html",
+    "href": "docs/design/index.html",
+    "title": "Design Documents",
+    "section": "",
+    "text": "Design Documents\n\nSoftware Conceptual Design"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "The Next-Generation Ground-based Solar Observatory Network is a geographically distributed network of six solar observing stations designed to provide continuous observations of the Sun. Each station operates largely autonomously, while High Level Software, Controls, and Data Management work together to operate the telescopes, monitor the network, acquire observations, and deliver data for fundamental science and space weather.\nThis website (and backing github repository) contains the ngGONG software documentation. The primary audience for this documentation is developers of ngGONG software but it may be relevant to others, especially reviewers.\nFor guidance on writing and updating this documentation, see the Author’s Guide.\n\n\nThis section is the shared reference for how documents in this repository relate to each other and to external ngGONG project documents. Authority depends on the scope, allocation, and approval status of a source, not on whether it is stored in this repository. Approved requirements, allocations, and interface contracts constrain the design and operational details in this repository. Draft or proposed content does not by itself indicate project approval.\n\n\nThe following document types provide requirements, constraints, and operational context for the software documentation.\n\n\n\n\n\n\n\nDocument\nRole\n\n\n\n\nOperational Concepts Document (OCD)\nObservatory operational intent, scenarios, and nominal and off-nominal behavior.\n\n\nOperational Architecture Document (OAD)\nSystem responsibilities, functional allocations, boundaries, and interfaces.\n\n\nScience Requirements Document (SRD)\nScience drivers, performance requirements, and science-data-product requirements.\n\n\nDesign Requirements Documents (DRDs)\nRequirements allocated to individual systems, including software and controls.\n\n\nInterface Control Documents (ICDs)\nContracts between systems or components.\n\n\n\n\n\n\nThe documents in this repository develop different parts of the software definition:\n\nThe Software Development Plan defines the software development, verification, and maintenance approach.\nThe Software Design Description develops software responsibilities, boundaries, interactions, and design decisions consistent with the applicable requirements and system allocations.\nVarious Interface Control Documents (ICDs) describing the interface between different elements of the Software.\nSupporting specifications and guides, including release and deployment guidance, develop details within their stated scope and remain consistent with the applicable requirements, design, and development plan.\n\nUpstream documents are not expected to contain every detail needed for design, implementation, operation, or verification. Repository documents provide agreed details within their allocated scope that need not first appear in an upstream document. For example, the SCS-OPWS supplies policy and workflow detail that requirements and conceptual design leave open. Those requirements and allocations continue to govern the resulting details. Proposed content and items marked TBD represent decisions that are not yet settled.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "index.html#document-relationships-and-source-authority",
+    "href": "index.html#document-relationships-and-source-authority",
+    "title": "Overview",
+    "section": "",
+    "text": "This section is the shared reference for how documents in this repository relate to each other and to external ngGONG project documents. Authority depends on the scope, allocation, and approval status of a source, not on whether it is stored in this repository. Approved requirements, allocations, and interface contracts constrain the design and operational details in this repository. Draft or proposed content does not by itself indicate project approval.\n\n\nThe following document types provide requirements, constraints, and operational context for the software documentation.\n\n\n\n\n\n\n\nDocument\nRole\n\n\n\n\nOperational Concepts Document (OCD)\nObservatory operational intent, scenarios, and nominal and off-nominal behavior.\n\n\nOperational Architecture Document (OAD)\nSystem responsibilities, functional allocations, boundaries, and interfaces.\n\n\nScience Requirements Document (SRD)\nScience drivers, performance requirements, and science-data-product requirements.\n\n\nDesign Requirements Documents (DRDs)\nRequirements allocated to individual systems, including software and controls.\n\n\nInterface Control Documents (ICDs)\nContracts between systems or components.\n\n\n\n\n\n\nThe documents in this repository develop different parts of the software definition:\n\nThe Software Development Plan defines the software development, verification, and maintenance approach.\nThe Software Design Description develops software responsibilities, boundaries, interactions, and design decisions consistent with the applicable requirements and system allocations.\nVarious Interface Control Documents (ICDs) describing the interface between different elements of the Software.\nSupporting specifications and guides, including release and deployment guidance, develop details within their stated scope and remain consistent with the applicable requirements, design, and development plan.\n\nUpstream documents are not expected to contain every detail needed for design, implementation, operation, or verification. Repository documents provide agreed details within their allocated scope that need not first appear in an upstream document. For example, the SCS-OPWS supplies policy and workflow detail that requirements and conceptual design leave open. Those requirements and allocations continue to govern the resulting details. Proposed content and items marked TBD represent decisions that are not yet settled.",
+    "crumbs": [
+      "Overview"
+    ]
+  },
+  {
     "objectID": "docs/developer-guides/acli.html",
     "href": "docs/developer-guides/acli.html",
     "title": "Install and Use Atlassian CLI",
@@ -578,33 +638,6 @@
       "How-Tos",
       "Install and Use Atlassian CLI"
     ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
-    "section": "",
-    "text": "The Next-Generation Ground-based Solar Observatory Network is a geographically distributed network of six solar observing stations designed to provide continuous observations of the Sun. Each station operates largely autonomously, while High Level Software, Controls, and Data Management work together to operate the telescopes, monitor the network, acquire observations, and deliver data for fundamental science and space weather.\nThis website (and backing github repository) contains the ngGONG software documentation. The primary audience for this documentation is developers of ngGONG software but it may be relevant to others, especially reviewers.\n\n\n\nSoftware Development Plan - The guiding document for how ngGONG will do software development.\n\nSCS Release and Deployment Management - A detailed look at how the Station Control System specifically will do release and deployment management.\n\nDesign Documents\n\nSoftware Conceptual Design\nDesign Overview\n\nDeveloper Guides - Guides and how-tos for developers",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "index.html#documentation-sets",
-    "href": "index.html#documentation-sets",
-    "title": "Overview",
-    "section": "",
-    "text": "Software Development Plan - The guiding document for how ngGONG will do software development.\n\nSCS Release and Deployment Management - A detailed look at how the Station Control System specifically will do release and deployment management.\n\nDesign Documents\n\nSoftware Conceptual Design\nDesign Overview\n\nDeveloper Guides - Guides and how-tos for developers",
-    "crumbs": [
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "docs/design/index.html",
-    "href": "docs/design/index.html",
-    "title": "Design Documents",
-    "section": "",
-    "text": "Design Documents\n\nSoftware Conceptual Design"
   },
   {
     "objectID": "docs/developer-guides/docker-preview.html",
