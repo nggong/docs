@@ -1,3 +1,9 @@
+<!--
+Purpose: Introduce the available developer guides and help readers find practical instructions for repository workflows.
+Audience: This page is intended for ngGONG software developers and documentation contributors.
+Style: Informational and descriptive. Use short summaries and links to the relevant guides.
+-->
+
 # Developer Guides
 
 These guides provide practical instructions for tools and workflows used by ngGONG software developers.
@@ -5,6 +11,7 @@ They describe recommended practices unless a guide identifies a project requirem
 
 ## Guides
 
+- [Author's Guide](authors-guide.md)
 - [Install and Use Atlassian CLI](acli.md)
 - [Install Docker for Documentation Preview](docker-preview.md)
 - [Set Up Git Commit Signing](git-commit-signing.md)
