@@ -16,6 +16,9 @@ This website (and backing github repository) contains the ngGONG software docume
 The primary audience for this documentation is developers of ngGONG software but it may be relevant
 to others, especially reviewers.
 
+For guidance on contributing to this repository, see the
+[Contributor's Guide](docs/developer-guides/contributors-guide.md).
+
 For guidance on writing and updating this documentation, see the
 [Author's Guide](docs/developer-guides/authors-guide.md).
 
