@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ee93c9f0d2205475d7b02916a53900b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-95083fb80a443a38605f69d07286a7ac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -207,6 +207,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../docs/developer-guides/contributors-guide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Contributor’s Guide</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../docs/developer-guides/authors-guide.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Author’s Guide</span></a>
   </div>
@@ -299,6 +305,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<!--
+Purpose: Explain how to install Docker and run a local preview of the documentation.
+Audience: This guide is intended for project developers and documentation contributors.
+Style: Instructional and direct. Use short steps, commands, and examples.
+-->
 <section id="install-docker-for-documentation-preview" class="level1">
 <h1>Install Docker for Documentation Preview</h1>
 <p>The local documentation preview runs in Docker. Use Docker’s <a href="https://docs.docker.com/engine/install/ubuntu/">official Ubuntu installation instructions</a> for the current prerequisites and installation procedure. This guide adds only the steps needed to run the ngGONG documentation preview.</p>
@@ -327,7 +338,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="start-the-preview">Start the Preview</h2>
 <p>From the root directory of this repository, start the preview server:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The first run builds the documentation image and can take several minutes. When the preview server is ready, open <a href="http://localhost:4848/" class="uri">http://localhost:4848/</a>. Press <code>Ctrl+C</code> in the terminal to stop the server.</p>
+<p>The first run builds the documentation image and can take several minutes. When the preview server is ready, open <a href="http://localhost:4848/" class="uri">http://localhost:4848/</a>.</p>
+<p>To use a different host port, such as when another checkout already uses 4848, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> PREVIEW_PORT=4849 preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Open <a href="http://localhost:4849/" class="uri">http://localhost:4849/</a> for that example. Choose a different free port for each checkout. Press <code>Ctrl+C</code> in the terminal that started a preview to stop that preview.</p>
 
 
 </section>
@@ -741,7 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Draft post-v0.0.3 gfda8b66</p>
+<p>Draft post-v0.0.3 g7e35bef</p>
 <p>© Copyright 2026 Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA).</p>
 <p>The U.S. National Science Foundation (NSF) Next-Generation Ground-based Solar Observing Network (ngGONG) is being designed by the NSF National Solar Observatory (NSO) with funding from NSF. NSO is managed by the Association of Universities for Research in Astronomy, Inc.&nbsp;(AURA), and funded under a cooperative agreement with the NSF.</p>
 <p>Except where otherwise noted, this documentation is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>.</p>
