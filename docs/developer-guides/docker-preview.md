@@ -1,3 +1,9 @@
+<!--
+Purpose: Explain how to install Docker and run a local preview of the documentation.
+Audience: This guide is intended for project developers and documentation contributors.
+Style: Instructional and direct. Use short steps, commands, and examples.
+-->
+
 # Install Docker for Documentation Preview
 
 The local documentation preview runs in Docker.
@@ -47,7 +53,16 @@ make preview
 
 The first run builds the documentation image and can take several minutes.
 When the preview server is ready, open <http://localhost:4848/>.
-Press `Ctrl+C` in the terminal to stop the server.
+
+To use a different host port, such as when another checkout already uses 4848, run:
+
+```sh
+make PREVIEW_PORT=4849 preview
+```
+
+Open <http://localhost:4849/> for that example.
+Choose a different free port for each checkout.
+Press `Ctrl+C` in the terminal that started a preview to stop that preview.
 
 [official Ubuntu installation instructions]: https://docs.docker.com/engine/install/ubuntu/
 [Linux post-installation instructions]: https://docs.docker.com/engine/install/linux-postinstall/

@@ -3,6 +3,7 @@ DOCS_IMAGE ?= nggong-docs-quarto:local
 VALE_IMAGE ?= jdkato/vale:v3.17.0
 QUARTO_HOME := .quarto-home
 PDF_OUTPUT_DIR := _pdf
+# Host port for the preview container; Quarto listens on 4848 inside the container.
 PREVIEW_PORT ?= 4848
 # Preview settings must apply to both renders; --profile replaces QUARTO_PROFILE.
 HTML_PROFILE := website
