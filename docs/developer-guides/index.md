@@ -11,6 +11,7 @@ They describe recommended practices unless a guide identifies a project requirem
 
 ## Guides
 
+- [Contributor's Guide](contributors-guide.md)
 - [Author's Guide](authors-guide.md)
 - [Install and Use Atlassian CLI](acli.md)
 - [Install Docker for Documentation Preview](docker-preview.md)
